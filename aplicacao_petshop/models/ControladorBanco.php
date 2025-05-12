@@ -6,7 +6,7 @@ include('BancoDeDados.php');
 class ControladorBanco implements BancoDeDados{
 
     protected $conexao_banco;
-    protected $consulta_sql;
+    protected $consulta_banco;
 
     // Construct:
     function __construct($servidor, $usuario, $senha, $nome){
@@ -17,41 +17,41 @@ class ControladorBanco implements BancoDeDados{
             $senha,
             $nome
         );
+
+        // Verificando se a conexão foi válida:
+        if (mysqli_connect_errno()){
+            $this->conexao_banco->close(); 
+        }
+
     }
 
     // Métodos da interface:
-    public function consultarBanco($nome_tabela){
+    public function consultarBanco($consulta_sql){
         /* Método que atualiza o valor do atributo 'consulta_sql' para ser uma consulta
         à uma tabela de acordo com o valor do parâmetro, que é o nome da tabela pesquisada.
         */
-        $this->consulta_sql = "SELECT * FROM " . $nome_tabela;
-    }
-
-    public function obterDados(){
 
         // Fazendo consulta no banco:
-        $consulta_banco = $this->conexao_banco->query($this->consulta_sql);
-
+        $this->consulta_banco = $this->conexao_banco->query($consulta_sql);
+    }
+    
+    public function obterDados(){
+        
         // Exibindo resultados da consulta:
-        while($tupla_consulta = $consulta_banco->fetch_array(MYSQLI_ASSOC)){
-            echo "Resultado obtido:" . "Nome -> " . $tupla_consulta['nome'];
-            echo " ---- Idade -> " . $tupla_consulta['idade'];
-            echo " ---- CPF -> " . $tupla_consulta['cpf'] . "<br><br>";
+        while($tupla_consulta = $this->consulta_banco->fetch_array(MYSQLI_ASSOC)){
+            echo "Resultado obtido: " . $tupla_consulta['NUMERO_DO_VETERINARIO'] . "<br><br>";
         }
     }
+    public function cadastrarDados($nome_tabela){
+        
+    }   
 
-    public function cadastrarDados($tabela){
-        // 
-
-
-
+    public function desconectarBanco(){
+        $this->conexao_banco->close();
+        echo "Instância do banco destruida.";
     }
-
 
 
 }   
-
-
-
 
 ?>
