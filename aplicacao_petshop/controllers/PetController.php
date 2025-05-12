@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $nome_tabela = "PET";
     
 
-    $conexao_banco->cadastrarDados()
+    $conexao_banco->cadastrarDados();
 
 }
 else{
-    echo "<p> Requisição inválida.</p>"
+    echo "<p> Requisição inválida.</p>";
 }
 
 
