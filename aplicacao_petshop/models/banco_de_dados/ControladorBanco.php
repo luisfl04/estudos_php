@@ -9,18 +9,19 @@ class ControladorBanco implements BancoDeDados{
     protected $consulta_banco;
 
     // Construct:
-    function __construct($servidor, $usuario, $senha, $nome){
+    function __construct(){
         // Criando conexão com o banco:
         $this->conexao_banco = new mysqli(
-            $servidor,
-            $usuario,
-            $senha,
-            $nome
+            "localhost:3306",
+            "root",
+            34512897,
+            "PETSHOP"
         );
 
         // Verificando se a conexão foi válida:
         if (mysqli_connect_errno()){
             $this->conexao_banco->close(); 
+            echo "Erro ao criar controlador do banco de dados";
         }
 
     }
