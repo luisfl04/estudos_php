@@ -43,7 +43,7 @@ class ControladorBanco implements BancoDeDados{
             echo "Resultado obtido: " . $tupla_consulta['NUMERO_DO_VETERINARIO'] . "<br><br>";
         }
     }
-    public function cadastrarDados($nome_tabela){
+    public function cadastrarDados($comando_sql){
         
     }   
 

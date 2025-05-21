@@ -1,1 +1,1 @@
-<a href="views/formulario_cadastro_pet">Cadastro de pet</a>
+<a href="views/formulario_cadastro_pet.php">Cadastro de pet</a>

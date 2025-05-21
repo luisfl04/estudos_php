@@ -1,6 +1,6 @@
 <?php 
 // Incluindo controlador do banco de dados:
-include('banco_de_dados/ControladorBanco.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
 
 
 
@@ -45,10 +45,13 @@ class Pet{
     }
 
 
-    public function cadastrarPetBanco($model_pet){
-        $comando_sql = "";
-
-        $this->controlador_banco->cadastrarDados();
+    public function cadastrarPetBanco(){
+        $comando_sql = "insert into Pet(nome_do_tipo, apelido, tipo_do_pet, dono_do_pet)\n
+        values('{$this->getNomePet()}', '{$this->getApelido()}', {$this->getTipoPet()}, {$this->getDonoPet()});
+        ";
+        $this->controlador_banco->cadastrarDados($comando_sql);
+    
+        return "Pet cadastrado com sucesso!";
     }
 
 }

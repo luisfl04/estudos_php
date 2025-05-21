@@ -1,7 +1,7 @@
 <?php 
 
 // Incluindo classe modelo:
-include('../models/Pet.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/aplicacao_petshop/models/Pet.php';
 
 class PetController{
     // Intância da classe de banco de dados:
@@ -15,7 +15,7 @@ class PetController{
     // Método que controlará o fluxo
     public function controlarRequisicao(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            echo "Método post";
+            $this->cadastrarPet();
         }
         else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             echo "Método get";
@@ -36,7 +36,9 @@ class PetController{
         $this->model_pet->criarPet($nome_do_pet, $apelido, $tipo_do_pet, $dono_do_pet);
     
         // Cadastrando o objeto no banco de dados:
-        $this->model_pet->cadastrarPetBanco();
+        $resposta_cadastro =  $this->model_pet->cadastrarPetBanco();
+    
+        echo $resposta_cadastro;
     }
 
 }
