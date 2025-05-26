@@ -12,10 +12,10 @@ class ControladorBanco implements BancoDeDados{
     function __construct(){
         // Criando conexão com o banco:
         $this->conexao_banco = new mysqli(
-            "localhost:3306",
+            "127.0.0.1",
             "root",
-            34512897,
-            "PETSHOP"
+            "",
+            "petshop"
         );
 
         // Verificando se a conexão foi válida:
@@ -37,15 +37,13 @@ class ControladorBanco implements BancoDeDados{
     }
     
     public function obterDados(){
-        
-        // Exibindo resultados da consulta:
-        while($tupla_consulta = $this->consulta_banco->fetch_array(MYSQLI_ASSOC)){
-            echo "Resultado obtido: " . $tupla_consulta['NUMERO_DO_VETERINARIO'] . "<br><br>";
-        }
+        $retorno =  $this->consulta_banco->fetch_array(MYSQLI_ASSOC);
+        return $retorno;
     }
     public function cadastrarDados($comando_sql){
-        
-    }   
+        $this->consulta_banco = $this->conexao_banco->query($comando_sql);
+    }
+
 
     public function desconectarBanco(){
         $this->conexao_banco->close();
