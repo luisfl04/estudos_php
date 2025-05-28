@@ -41,19 +41,10 @@ class PetController{
         echo $resposta_cadastro;
     }
 
-    public function obterPet(){
+    public function obterPet(): array{
         $pets = $this->model_pet->consultarPet();
-        $collection_pet[] = [];
-        foreach($pets as $pet ){
-            $pet_criado = $this->model_pet->criarPet($pet['nome_do_pet'], $pet['apelido'], $pet['tipo_do_pet'], $pet['dono_do_pet']);
-            $nome_pet = $pet_criado->getNomePet();
-            $collection_pet["$nome_pet"] = $pet_criado;
-        }
-    
-        return $collection_pet;
+        return $pets;
     }
-
-
 }
 
 ?>

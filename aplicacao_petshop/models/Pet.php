@@ -27,7 +27,6 @@ class Pet{
         $this->apelido = $apelido_passado;
         $this->tipo_do_pet = $tipo_do_pet_informado;
         $this->dono_do_pet = $dono_do_pet_informado;
-        return $this;
     }
 
     // Getters:
@@ -35,7 +34,7 @@ class Pet{
         return $this->id_pet;
     }
 
-    public function getNomePet(){ 
+    public function getNomePet(): string{ 
         return $this->nome_do_pet;
     }
 
@@ -63,11 +62,22 @@ class Pet{
 
     public function consultarPet(){
         $comando_sql = "select * from pet";
-    
         $this->controlador_banco->consultarBanco($comando_sql);
-        $resposta = $this->controlador_banco->obterDados();
-        return $resposta;
+        $valores_banco = $this->controlador_banco->obterDados();
+        $collection_pets = $this->criarCollection($valores_banco);
+        return $collection_pets;
     }
+
+    public function criarCollection($array_valores): array{
+        $collection_pets[] = [];
+        foreach($array_valores as $valor){
+            $pet_atual = new Pet();
+            $pet_atual->criarPet($valor['nome_do_pet'], $valor['apelido'], $valor['tipo_do_pet'], $valor['dono_do_pet']);
+            $collection_pets[$pet_atual->getNomePet()] = $pet_atual;
+        }
+        return $collection_pets;
+    }
+
 
 
 }
