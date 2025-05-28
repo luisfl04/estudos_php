@@ -21,7 +21,7 @@ class Pet{
         $this->controlador_banco = new ControladorBanco();
     }
 
-    public function criarPet( $nome_passado, $apelido_passado, $tipo_do_pet_informado, $dono_do_pet_informado){
+    public function criarPet($nome_passado, $apelido_passado, $tipo_do_pet_informado, $dono_do_pet_informado){
         /* Método que incializa os atributos da classe Pet. */
         $this->nome_do_pet = $nome_passado;
         $this->apelido = $apelido_passado;
@@ -62,18 +62,19 @@ class Pet{
 
     public function consultarPet(){
         $comando_sql = "select * from pet";
-        $this->controlador_banco->consultarBanco($comando_sql);
-        $valores_banco = $this->controlador_banco->obterDados();
-        $collection_pets = $this->criarCollection($valores_banco);
+        $resposta_pets = $this->controlador_banco->consultarBanco($comando_sql);
+        $collection_pets[] = [];
+        // $collection_pets = $this->criarCollection($valores_banco);
+       
         return $collection_pets;
     }
 
-    public function criarCollection($array_valores): array{
-        $collection_pets[] = [];
-        foreach($array_valores as $valor){
+    public function criarCollection($valores_banco): array{
+        $collection_pets = [];
+        foreach($valores_banco as $valor){
             $pet_atual = new Pet();
-            $pet_atual->criarPet($valor['nome_do_pet'], $valor['apelido'], $valor['tipo_do_pet'], $valor['dono_do_pet']);
-            $collection_pets[$pet_atual->getNomePet()] = $pet_atual;
+            $pet_atual->criarPet($valor[1], $valor[2], $valor[3], $valor[4]);
+            $collection_pets[] = $pet_atual;
         }
         return $collection_pets;
     }

@@ -15,10 +15,7 @@ class PetController{
     // Método que controlará o fluxo
     public function controlarRequisicao(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $this->cadastrarPet();
-        }
-        else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-            $this->obterPet();
+            $this->cadastrarPet();    
         }
         else{
             return "Método de requisição não permitido!";
@@ -41,10 +38,15 @@ class PetController{
         echo $resposta_cadastro;
     }
 
-    public function obterPet(): array{
-        $pets = $this->model_pet->consultarPet();
+    public function obterPet(){
+        $pets =  $this->model_pet->consultarPet();
         return $pets;
     }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $instancia = new PetController();
+    $instancia->cadastrarPet();
 }
 
 ?>

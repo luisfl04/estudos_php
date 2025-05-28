@@ -20,14 +20,7 @@
         <?php 
             include("../controllers/PetController.php");
             $controlador = new PetController();
-            $collection_pets = $controlador->obterPet();
-            foreach($collection_pets as $pet){
-                echo "<td>{$pet->getId()}</td>";
-                echo "<td>{$pet->getNomePet()}</td>";
-                echo "<td>{$pet->getApelido()}</td>";
-                echo "<td>{$pet->getTipoPet()}</td>";
-                echo "<td>{$pet->getDonoPet()}</td>";
-            }
+            $pets =  $controlador->obterPet();
         ?>
 
     </table>

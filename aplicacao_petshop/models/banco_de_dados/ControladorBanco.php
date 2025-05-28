@@ -34,12 +34,21 @@ class ControladorBanco implements BancoDeDados{
 
         // Fazendo consulta no banco:
         $this->consulta_banco = $this->conexao_banco->query($consulta_sql);
+        $resposta = $this->obterDados();
+        foreach($resposta as $res){
+            echo $res[1];
+        }
+        return $resposta;
     }
     
-    public function obterDados(){
-        $retorno =  $this->consulta_banco->fetch_array(MYSQLI_ASSOC);
-        return $retorno;
+    public function obterDados():array{
+        $valores = [];
+        while($valor = $this->consulta_banco->fetch_array(MYSQLI_ASSOC)){
+            $valores = $valor;
+        }
+        return $valores;
     }
+
     public function cadastrarDados($comando_sql){
         $this->consulta_banco = $this->conexao_banco->query($comando_sql);
     }
