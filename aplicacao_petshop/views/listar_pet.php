@@ -11,7 +11,6 @@
 
     <table>
         <tr>
-            <th>id</th>
             <th>Nome</th>
             <th>Apelido</th>
             <th>Tipo do pet</th>
@@ -21,6 +20,13 @@
             include("../controllers/PetController.php");
             $controlador = new PetController();
             $pets =  $controlador->obterPet();
+            foreach($pets as $pet){
+                echo "<td>{$pet->getNomePet()}</td>";
+                echo "<td>{$pet->getApelido()}</td>";
+                echo "<td>{$pet->getTipoPet()}</td>";
+                echo "<td>{$pet->getDonoPet()}</td>";
+                echo "<td><a href=''>Editar pet</a></td>";
+            }
         ?>
 
     </table>
