@@ -1,7 +1,0 @@
-- Estabalecer class representativa a tabela 'PET' no banco de dados.
-    - Fazer com que essa classe tenha método para inserção e consulta as suas tuplas no banco.
-    - Inserir valores no banco a partir de um formulário usando essa classe.
-
-- Exibir os dados obtendo as chaves de cada campo de forma dinâmica em um loop, ou seja,
-iterar sobre o resultado e exibi-lo sem nescessariamente saber o número de resultados e 
-os nomes das colunas da tabela. 

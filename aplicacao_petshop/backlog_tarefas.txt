@@ -1,0 +1,22 @@
+1 - Criação de diagramas:
+    1.1 -> Casos de uso -> ✔
+    1.2 -> Entidade relacionamento ->
+        1.2.1 -> Estabelecer cardinalidades e relacionamentos -> 
+    1.3 -> Sequência -> 
+    1.4 -> Classe -> 
+
+2 - Scrips SQL: 
+    2.1 -> Criação das tabelas
+    2.2 -> Inserção de valores nas tabelas -> 
+    2.3 -> Stores Procedures -> 
+    2.4 -> Views -> 
+    2.5 -> Selects -> 
+
+3 - Implementação da aplicação:
+    3.1 -> Tela de login e cadastro
+    3.2 -> Pensar nas funcionalidades
+
+4 -> Documentação:
+    4.1 README.md no github
+
+5 -> Relatório da aplicação em PDF
