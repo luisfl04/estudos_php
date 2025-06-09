@@ -1,8 +1,8 @@
 1 - Criação de diagramas:
     1.1 -> Casos de uso -> ✔
-    1.2 -> Entidade relacionamento ->
-        1.2.1 -> Estabelecer cardinalidades e relacionamentos -> 
-    1.3 -> Sequência -> 
+    1.2 -> Entidade relacionamento -> ✔ 
+        1.2.1 -> Estabelecer cardinalidades e relacionamentos -> ✔ 
+    1.3 -> Sequência -> ✔
     1.4 -> Classe -> 
 
 2 - Scrips SQL: 
