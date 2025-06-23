@@ -3,7 +3,7 @@
 require_once 'CollectionBase.php';
 require_once '../Endereco.php'; // Supondo que você tenha uma classe Usuario
 
-class UsuarioCollection extends CollectionBase
+class EnderecoCollection extends CollectionBase
 {
     public function criarCollection(array $valores_retorno_banco): array
     {

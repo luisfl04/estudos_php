@@ -17,7 +17,7 @@ class Usuario {
 
     private $controlador_banco;
 
-    private $usuario_collection;
+    public $usuario_collection;
 
 
     // Construtor
@@ -84,7 +84,7 @@ class Usuario {
         $this->senha = $nova_senha;
     }
 
-    public function cadastrarUsuarioBanco(){
+    public function cadastrarUsuarioBanco() : void{
         $comando_sql = "insert into usuario(username, senha, nome, telefone, cpf, data_nascimento, sexo)
         values('{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}');
         ";
@@ -92,10 +92,27 @@ class Usuario {
         $this->controlador_banco->cadastrarDados($comando_sql);
     }
 
-    public function consultarUsuarioBanco(){
-        $comando_sql = "select * from view_pet";
+    public function consultarUsuarioBanco() : array{
+        $comando_sql = "select * from view_usuario";
         $resposta = $this->controlador_banco->consultarBanco($comando_sql);
         return $resposta;
     }
+
+    public function criarCollection($valores_retorno_banco) : array{
+        return $this->usuario_collection->criarCollection($valores_retorno_banco);
+    }
+
+    public function consultarDadosLogin($username, $senha) : bool{
+        $comando_sql = "
+            SELECT * FROM usuario 
+            WHERE username = '$username' AND senha = '$senha'
+            LIMIT 1;
+        ";
+
+        $resultado = $this->controlador_banco->consultarBanco($comando_sql);
+
+        return !empty($resultado); // retorna true se encontrou, false caso contrário
+    }
+
 
 }
