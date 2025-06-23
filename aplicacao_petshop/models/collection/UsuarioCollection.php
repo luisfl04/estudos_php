@@ -11,7 +11,9 @@ class UsuarioCollection extends CollectionBase
 
         foreach ($valores_retorno_banco as $linha) {
             $usuario = new Usuario(
-                $linha['id'],
+                $linha['id_usuario'],
+                $linha['username'],
+                $linha['senha'],
                 $linha['nome'],
                 $linha['telefone'],
                 $linha['cpf'],

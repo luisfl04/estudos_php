@@ -18,7 +18,7 @@ CREATE TABLE usuario (
     id_usuario INT NOT NULL AUTO_INCREMENT,
     endereco_id INT NOT NULL,
     
-    usuario VARCHAR(20) NOT NULL UNIQUE,
+    username VARCHAR(20) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,

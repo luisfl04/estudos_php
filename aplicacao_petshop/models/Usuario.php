@@ -6,6 +6,9 @@ include('./collection/UsuarioCollection.php');
 
 class Usuario {
     private int $id_usuario;
+    private string $username;
+    private string $senha;
+
     private string $nome;
     private string $telefone;
     private string $cpf;
@@ -14,20 +17,36 @@ class Usuario {
 
     private $controlador_banco;
 
-    private $collection_base;
+    private $usuario_collection;
 
 
     // Construtor
-    public function __construct(int $id=0, string $nome, string $telefone, string $cpf, string $data_nascimento, string $sexo) {
+    public function __construct(int $id=0, string $username, string $senha, string $nome, string $telefone, string $cpf, string $data_nascimento, string $sexo) {
         $this->id_usuario = $id;
+        $this->username = $username;
+        $this->senha = $senha;
         $this->nome = $nome;
         $this->telefone = $telefone;
         $this->cpf = $cpf;
         $this->data_nascimento = $data_nascimento;
         $this->sexo = $sexo;
+        $this->controlador_banco = new ControladorBanco();
+        $this->usuario_collection = new UsuarioCollection();
     }
-
+    
     // Getters
+    public function getId() : int{
+        return $this->id_usuario;
+    }
+    
+    public function getUsername(): string {
+        return $this->username;
+    }
+    
+    public function getSenha(): string {
+        return $this->senha;
+    }
+    
     public function getNome(): string {
         return $this->nome;
     }
@@ -56,4 +75,27 @@ class Usuario {
     public function setTelefone(string $novo_telefone): void {
         $this->telefone = $novo_telefone;
     }
+
+    public function setUsername(string $novo_username): void {
+        $this->username = $novo_username;
+    }
+
+    public function setSenha(string $nova_senha): void {
+        $this->senha = $nova_senha;
+    }
+
+    public function cadastrarUsuarioBanco(){
+        $comando_sql = "insert into usuario(username, senha, nome, telefone, cpf, data_nascimento, sexo)
+        values('{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}');
+        ";
+
+        $this->controlador_banco->cadastrarDados($comando_sql);
+    }
+
+    public function consultarUsuarioBanco(){
+        $comando_sql = "select * from view_pet";
+        $resposta = $this->controlador_banco->consultarBanco($comando_sql);
+        return $resposta;
+    }
+
 }

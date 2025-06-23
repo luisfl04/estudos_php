@@ -61,7 +61,7 @@ class Pet{
         return "Pet cadastrado com sucesso";
     }
 
-    public function consultarPet(){
+    public function consultarPetBanco(){
         $comando_sql = "select * from pet";
         $resposta_pets = $this->controlador_banco->consultarBanco($comando_sql);
         return $resposta_pets;

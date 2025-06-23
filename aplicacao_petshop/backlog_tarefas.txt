@@ -21,9 +21,13 @@
             3.1.1.1 -> Formulário php -> OK
             3.1.1.2 -> Classe com obtenção dos dados que irá persistir os mesmos no banco
                 3.1.1.1 -> Implementar classe 'CollectionBase' que irá criar coleção de objetos -> Ok
-                3.1.1.2.2 -> Classe usuário -> 
+                3.1.1.2.2 -> Classe usuário -> Ok
                 3.1.1.2.3 -> Classe Endereco -> 
-            3.1.1.3 -> Mensagem de sucesso ou erro no momento do cadastro
+            3.1.1.3 -> Classes controladoras no momento do login
+                3.1.1.3.1 -> Classe 'CadastroController' -> 
+                3.1.1.3.2 -> Classe 'UsuarioController' -> 
+                3.1.1.3.3 -> Classe 'EnderecoController' -> 
+            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro
        
        
         3.1.2 -> Login do cliente e veterinário ->
