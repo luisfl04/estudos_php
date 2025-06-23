@@ -2,9 +2,7 @@
 <?php
 // Incluindo classes auxiliares:
 include('./banco_de_dados/ControladorBanco.php');
-
-
-
+include('./collection/UsuarioCollection.php');
 
 class Usuario {
     private int $id_usuario;
@@ -20,7 +18,8 @@ class Usuario {
 
 
     // Construtor
-    public function __construct(string $nome, string $telefone, string $cpf, string $data_nascimento, string $sexo) {
+    public function __construct(int $id=0, string $nome, string $telefone, string $cpf, string $data_nascimento, string $sexo) {
+        $this->id_usuario = $id;
         $this->nome = $nome;
         $this->telefone = $telefone;
         $this->cpf = $cpf;
