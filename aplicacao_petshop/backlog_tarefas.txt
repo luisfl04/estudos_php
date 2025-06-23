@@ -7,17 +7,27 @@
 
 2 - Scrips SQL: 
     2.1 -> Criação das tabelas -> ✔  
-    2.2 -> Inserção de valores nas tabelas -> 
+    2.2 -> Inserção de valores nas tabelas -> Ok
         2.2.1 -> Veterinarios -> Ok
         2.2.2 -> tipo de pets -> OK
         2.2.3 -> Raça de pets -> ok
         2.2.4 -> vacinas -> Ok
-    2.3 -> Stores Procedures -> 
-    2.4 -> Views -> 
-    2.5 -> Selects -> 
+    2.3 -> Stores Procedures -> Ok
+    2.4 -> Views -> OK  
 
 3 - Implementação da aplicação:
-    3.1 -> Tela de login e cadastro
+    3.1 -> Tela de login e cadastro -> 
+        3.1.1 -> Implementar cadastro de cliente -> 
+            3.1.1.1 -> Formulário php
+            3.1.1.2 -> Classe com obtenção dos dados que irá persistir os mesmos no banco
+            3.1.1.3 -> Mensagem de sucesso ou erro no momento do cadastro
+        3.1.2 -> Login do cliente e veterinário ->
+
+
+
+
+
+
     3.2 -> Pensar nas funcionalidades
 
 4 -> Documentação:
