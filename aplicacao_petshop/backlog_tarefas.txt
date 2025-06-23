@@ -10,8 +10,8 @@
     2.2 -> Inserção de valores nas tabelas -> 
         2.2.1 -> Veterinarios -> Ok
         2.2.2 -> tipo de pets -> OK
-        2.2.3 -> Raça de pets -> 
-        2.2.4 -> vacinas -> 
+        2.2.3 -> Raça de pets -> ok
+        2.2.4 -> vacinas -> Ok
     2.3 -> Stores Procedures -> 
     2.4 -> Views -> 
     2.5 -> Selects -> 

@@ -82,7 +82,7 @@ CREATE TABLE pet (
     raca_pet_id INT NOT NULL,
     apelido VARCHAR(50) NOT NULL,
     idade TINYINT UNSIGNED NOT NULL,
-    sexo ENUM('M', 'F') NOT NULL,
+    sexo ENUM('M', 'F', 'Outro') NOT NULL,
     PRIMARY KEY (id_pet),
     FOREIGN KEY (usuario_dono_id) REFERENCES usuario(id_usuario),
     FOREIGN KEY (tipo_pet_id) REFERENCES tipo_pet(id_tipo_pet),
@@ -108,10 +108,16 @@ CREATE TABLE agendamento_vacina (
     vacina_id INT NOT NULL,
     data_agendamento DATE NOT NULL,
     data_realizacao DATE,
-    status_agendamento enum('agendado', 'realizado') not null,
     PRIMARY KEY (id_agendamento_vacina),
     FOREIGN KEY (pet_id) REFERENCES pet(id_pet),
     FOREIGN KEY (veterinario_id) REFERENCES veterinario(id_veterinario),
     FOREIGN KEY (vacina_id) REFERENCES vacina(id_vacina)
 );
+
+
+
+
+
+
+
 
