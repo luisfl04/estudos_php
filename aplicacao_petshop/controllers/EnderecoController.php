@@ -1,5 +1,5 @@
 <?php
-include_once('../models/Endereco.php');
+include include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
 
 class EnderecoController {
     protected Endereco $endereco;

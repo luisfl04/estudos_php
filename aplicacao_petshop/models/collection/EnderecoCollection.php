@@ -1,7 +1,7 @@
 <?php
 
-require_once 'CollectionBase.php';
-require_once '../Endereco.php'; // Supondo que você tenha uma classe Usuario
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/CollectionBase.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
 
 class EnderecoCollection extends CollectionBase
 {

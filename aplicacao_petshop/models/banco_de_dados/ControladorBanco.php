@@ -1,7 +1,7 @@
 <?php 
 // Classe que implementa os métodos da interface 'PersistirBanco'.
 
-include('BancoDeDados.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/BancoDeDados.php';
 
 class ControladorBanco implements BancoDeDados{
 
@@ -27,7 +27,7 @@ class ControladorBanco implements BancoDeDados{
     }
 
     // Métodos da interface:
-    public function consultarBanco($consulta_sql){
+    public function consultarBanco($consulta_sql) : array{
         /* Método que atualiza o valor do atributo 'consulta_sql' para ser uma consulta
         à uma tabela de acordo com o valor do parâmetro, que é o nome da tabela pesquisada.
         */

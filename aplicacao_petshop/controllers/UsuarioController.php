@@ -1,5 +1,6 @@
 <?php
-include_once('../models/Usuario.php');
+
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
 
 class UsuarioController {
     protected Usuario $usuario;

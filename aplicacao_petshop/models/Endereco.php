@@ -1,7 +1,7 @@
     <?php
 // Incluindo classes auxiliares:
-include('banco_de_dados/ControladorBanco.php');
-include('collection/EnderecoCollection.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/EnderecoCollection.php';
 
 class Endereco {
     private int $id_endereco;

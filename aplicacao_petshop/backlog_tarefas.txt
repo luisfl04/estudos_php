@@ -24,10 +24,10 @@
                 3.1.1.2.2 -> Classe usuário -> Ok
                 3.1.1.2.3 -> Classe Endereco -> Ok
             3.1.1.3 -> Classes controladoras no momento do login
-                3.1.1.3.1 -> Classe 'CadastroController' -> 
+                3.1.1.3.1 -> Classe 'CadastroController' -> Ok
                 3.1.1.3.2 -> Classe 'UsuarioController' -> Ok
                 3.1.1.3.3 -> Classe 'EnderecoController' -> Ok
-            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro
+            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro -> 
        
        
         3.1.2 -> Login do cliente e veterinário ->
