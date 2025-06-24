@@ -24,7 +24,6 @@ class CadastroController {
 
             // Criando instância de Usuario
             $usuario = new Usuario(
-                0,
                 $_POST['username'],
                 $_POST['senha'],
                 $_POST['nome'],
@@ -37,17 +36,17 @@ class CadastroController {
 
             // Criando instância de Endereco
             $endereco = new Endereco(
-                0,
                 $_POST['rua'],
                 $_POST['bairro'],
+                $_POST['cidade'],
                 $_POST['estado'],
                 $_POST['complemento']
             );
             $enderecoController = new EnderecoController($endereco);
 
             // Persistindo dados no banco
-            $usuarioController->cadastrarUsuario();
             $enderecoController->cadastrarEndereco();
+            $usuarioController->cadastrarUsuario();
 
 
             $_SESSION['mensagem_cadastro'] = "Cadastro realizado com sucesso!";
@@ -60,7 +59,11 @@ class CadastroController {
     }
 }
 
+echo "Método  recebeido -> " . $_SERVER['REQUEST_METHOD'];
+
+// Controlando requisição:
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    echo "post";
     $cadastro = new CadastroController();
     $cadastro->processarCadastro();
 }

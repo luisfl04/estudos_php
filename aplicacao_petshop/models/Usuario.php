@@ -9,7 +9,6 @@ class Usuario {
     private string $username;
     private string $senha;
     private string $nome;
-    private string $nome;
     private string $telefone;
     private string $cpf;
     private string $data_nascimento;
@@ -18,8 +17,8 @@ class Usuario {
     private $usuario_collection;
 
     // Construtor
-    public function __construct($id=0, $username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
-        $this->id_usuario = $id;
+    public function __construct($username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
+        $this->id_usuario = 0;
         $this->username = $username;
         $this->senha = $senha;
         $this->nome = $nome;
@@ -81,9 +80,9 @@ class Usuario {
         $this->senha = $nova_senha;
     }
 
-    public function cadastrarUsuarioBanco() : void{
-        $comando_sql = "insert into usuario(username, senha, nome, telefone, cpf, data_nascimento, sexo)
-        values('{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}');
+    public function cadastrarUsuarioBanco($id_endereco_relacionado) : void{
+        $comando_sql = "insert into usuario(endereco_id, username, senha, nome, telefone, cpf, data_nascimento, sexo)
+        values('{$id_endereco_relacionado}', '{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}');
         ";
 
         $this->controlador_banco->cadastrarDados($comando_sql);

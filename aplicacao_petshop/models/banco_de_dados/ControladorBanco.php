@@ -46,9 +46,10 @@ class ControladorBanco implements BancoDeDados{
     }
 
     public function cadastrarDados($comando_sql){
-        $this->consulta_banco = $this->conexao_banco->query($comando_sql);
+        $this->consulta_banco = $this->conexao_banco->prepare($comando_sql);
+        $this->consulta_banco->execute();
+        return $this->conexao_banco->insert_id;
     }
-
 
     public function desconectarBanco(){
         $this->conexao_banco->close();

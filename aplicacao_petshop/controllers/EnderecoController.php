@@ -10,8 +10,9 @@ class EnderecoController {
     }
 
     // Cadastrar endereço no banco
-    public function cadastrarEndereco() {
-        $this->endereco->cadastrarEnderecoBanco();
+    public function cadastrarEndereco() : int {
+        $id_cadastrado = $this->endereco->cadastrarEnderecoBanco();
+        return $id_cadastrado;
     }
 
     // Obter endereços (retorna array de objetos Endereco)

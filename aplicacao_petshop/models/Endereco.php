@@ -7,6 +7,7 @@ class Endereco {
     private int $id_endereco;
     private string $rua;
     private string $bairro;
+    private string $cidade;
     private string $estado;
     private string $complemento;
     private $controlador_banco;
@@ -14,15 +15,16 @@ class Endereco {
 
     // Construtor
     public function __construct(
-        $id = 0,
         $rua,
         $bairro,
+        $cidade,
         $estado,
         $complemento
     ) {
-        $this->id_endereco = $id;
+        $this->id_endereco = 0;
         $this->rua = $rua;
         $this->bairro = $bairro;
+        $this->cidade = $cidade;
         $this->estado = $estado;
         $this->complemento = $complemento;
         $this->controlador_banco = new ControladorBanco();
@@ -42,6 +44,10 @@ class Endereco {
         return $this->bairro;
     }
 
+    public function getCidade(): string {
+        return $this->cidade;
+    }
+
     public function getEstado(): string {
         return $this->estado;
     }
@@ -59,6 +65,10 @@ class Endereco {
         $this->bairro = $novo_bairro;
     }
 
+    public function setCidade(string $nova_cidade): void {
+        $this->cidade = $nova_cidade;
+    }
+
     public function setEstado(string $novo_estado): void {
         $this->estado = $novo_estado;
     }
@@ -68,18 +78,21 @@ class Endereco {
     }
 
     // Métodos de banco
-    public function cadastrarEnderecoBanco() {
+    public function cadastrarEnderecoBanco(): int {
         $comando_sql = "
-            INSERT INTO endereco (rua, bairro, estado, complemento)
+            INSERT INTO endereco (rua, bairro, cidade, estado, complemento)
             VALUES (
                 '{$this->getRua()}',
                 '{$this->getBairro()}',
+                '{$this->getCidade()}',
                 '{$this->getEstado()}',
                 '{$this->getComplemento()}'
             );
         ";
 
-        $this->controlador_banco->cadastrarDados($comando_sql);
+        $id_cadastrado = $this->controlador_banco->cadastrarDados($comando_sql);
+        $this->id_endereco = $id_cadastrado;
+        return $this->id_endereco;
     }
 
     public function consultarEnderecoBanco() {
