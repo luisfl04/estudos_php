@@ -74,4 +74,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['acao'] === 'cadastrar') {
     exit;
 }
 
+// Lógica chamada via GET para realizar vacina
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if(isset($_GET['realizar'])){
+    
+        $id = intval($_GET['realizar']);
+    
+        $modelo = new AgendamentoVacina();
+        $modelo->realizarVacina($id);
+    
+        header("Location: ../views/crud_agendamentos_veterinario.php");
+        exit;
+    }
+    else if(isset($_GET['excluir'])){
+        $id = intval($_GET['excluir']);
+
+        $modelo = new AgendamentoVacina();
+        $modelo->excluirAgendamentoVacina($id);
+
+        header("Location: ../views/crud_agendamentos_veterinario.php");
+        exit;
+    }
+}
+
+
 ?>

@@ -93,5 +93,15 @@ class AgendamentoVacina {
         return $this->controlador_banco->consultarBanco($sql);
     }
 
+    public function realizarVacina(int $id_agendamento): void {
+        $data_realizacao = date('Y-m-d');
+        $sql = "UPDATE agendamento_vacina SET data_realizacao = '{$data_realizacao}' WHERE id_agendamento = {$id_agendamento}";
+        $this->controlador_banco->consultarBanco($sql);    
+    }
+
+    public function excluirAgendamentoVacina(int $id_agendamento): void {
+        $sql = "DELETE FROM agendamento_vacina WHERE id_agendamento = {$id_agendamento}";
+        $this->controlador_banco->cadastrarDados($sql);
+    }
 
 }

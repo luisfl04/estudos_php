@@ -40,8 +40,13 @@ $agendamentos = $agendamentoModel->consultarAgendamentosPorVeterinario($id_veter
                 </td>
                 <td>
                     <!-- Botões de ação serão implementados depois -->
-                    <a href="#" class="btn btn-success btn-sm disabled">Realizar</a>
-                    <a href="#" class="btn btn-danger btn-sm disabled">Excluir</a>
+                    <a href="../controllers/AgendamentoVacinaController.php?realizar=<?= $a['id_agendamento'] ?>" class="btn btn-success btn-sm">Realizar</a>
+                    <a href="../controllers/AgendamentoVacinaController.php?excluir=<?= $a['id_agendamento'] ?>" 
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('Tem certeza que deseja excluir este agendamento?')">
+                        Excluir
+                    </a>
+
                 </td>
             </tr>
         <?php endforeach; ?>
