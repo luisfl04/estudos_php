@@ -5,13 +5,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/
 // Classe que representa a tabela 'PET'.
 class Pet{
     // Atributos:
-    public $id_pet;
-
-    private $nome_do_pet;
+    private $id_pet;
+    private $tipo_pet;
+    private $raca;
     private $apelido;
-    private $tipo_do_pet;
-    private $dono_do_pet;
-
+    private $idade;
+    private $sexo;
     private $controlador_banco;
 
     // Construct
@@ -51,12 +50,9 @@ class Pet{
 
 
     public function cadastrarPetBanco(){
-        $comando_sql = "insert into pet(nome_do_pet, apelido, tipo_do_pet, dono_do_pet)
-        values('{$this->getNomePet()}', '{$this->getApelido()}', '{$this->getTipoPet()}', '{$this->getDonoPet()}');
-        ";
-        $this->controlador_banco->cadastrarDados($comando_sql);
-
-        return "Pet cadastrado com sucesso";
+        $stmt = $this->db->prepare("INSERT INTO pet (tipo_pet, raca, apelido, idade, sexo) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssis", $tipo_pet, $raca, $apelido, $idade, $sexo);
+        return $stmt->execute();
     }
 
     public function consultarPetBanco(){
@@ -64,19 +60,28 @@ class Pet{
         $resposta_pets = $this->controlador_banco->consultarBanco($comando_sql);
         return $resposta_pets;
     }
-    public function criarCollection($respostas_pet){
+    
+    public function buscarPorId($id) {
+        $stmt = $this->db->prepare("SELECT * FROM pet WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
 
-        foreach($respostas_pet as $valor){
-            $id = $valor['id_pet'];
-            $nome_do_pet = $valor['nome_do_pet'];
-            $apelido = $valor['apelido'];
-            $tipo_do_pet = $valor['tipo_do_pet'];
-            $dono_do_pet = $valor['dono_do_pet'];
-            $pet_atual = new Pet();
-            $pet_atual->criarPet($id, $nome_do_pet, $apelido, $tipo_do_pet, $dono_do_pet);
-            $colecao[] = $pet_atual;
-        }
-        return $colecao;
+    public function atualizar($id, $tipo_pet, $raca, $apelido, $idade, $sexo) {
+        $stmt = $this->db->prepare("UPDATE pet SET tipo_pet=?, raca=?, apelido=?, idade=?, sexo=? WHERE id=?");
+        $stmt->bind_param("sssisi", $tipo_pet, $raca, $apelido, $idade, $sexo, $id);
+        return $stmt->execute();
+    }
+
+    public function remover($id) {
+        $stmt = $this->db->prepare("DELETE FROM pet WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+
+    public function criarCollection($respostas_pet){
     }
 
 

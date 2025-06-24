@@ -47,4 +47,22 @@ class PetController{
 
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['acao']) && $_POST['acao'] === 'cadastrar') {
+        $petModel->cadastrar($_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
+        header("Location: ../views/crud_pets.php");
+    }
+
+    if (isset($_POST['acao']) && $_POST['acao'] === 'atualizar') {
+        $petModel->atualizar($_POST['id'], $_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
+        header("Location: ../views/crud_pets.php");
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remover'])) {
+    $petModel->remover($_GET['remover']);
+    header("Location: ../views/crud_pets.php");
+}
+
+
 ?>
