@@ -19,25 +19,61 @@
     3.1 -> Tela de login e cadastro -> 
         3.1.1 -> Implementar cadastro de cliente -> 
             3.1.1.1 -> Formulário php -> OK
-            3.1.1.2 -> Classes com obtenção dos dados que irá persistir os mesmos no banco
+            3.1.1.2 -> Classes com obtenção dos dados que irá persistir os mesmos no banco -> OK
                 3.1.1.2.1 -> Implementar classe 'CollectionBase' que irá criar coleção de objetos -> Ok
                 3.1.1.2.2 -> Classe usuário -> Ok
                 3.1.1.2.3 -> Classe Endereco -> Ok
-            3.1.1.3 -> Classes controladoras no momento do login
+            3.1.1.3 -> Classes controladoras no momento do login -> Ok
                 3.1.1.3.1 -> Classe 'CadastroController' -> Ok
                 3.1.1.3.2 -> Classe 'UsuarioController' -> Ok
                 3.1.1.3.3 -> Classe 'EnderecoController' -> Ok
-            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro -> 
-       
-       
+            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro ->
         3.1.2 -> Login do cliente e veterinário ->
-
-
-
-
-
-
-    3.2 -> Pensar nas funcionalidades
+            3.1.2.1 -> Formulário de login com os campos -> 
+            3.1.2.2 -> Controller que irá verificar os dados conforme o tipo de usuário -> 
+            3.1.2.3 -> Redirecionamento para página correspondente de acordo com tipo de usuário -> 
+    3.2 -> CRUD de Pets(Cliente) -> 
+        3.2.1 -> Cadastro de pets -> 
+            3.2.1.1 -> Formulário -> 
+            3.2.1.2 -> Lógica no controller para persistência -> 
+            3.2.1.3 -> Confirmação do cadastro com a visualização do valor ou erro -> 
+        3.2.2 -> Atualização de pets -> 
+            3.2.2.1 -> Formulário que renderizará os dados do pet selectionado para Atualização
+            3.2.2.2 -> Lógica de persistência da atualização no controller  -> 
+            3.2.2.3 -> visualização do dado atualizado ou erro -> 
+        3.2.3 -> Remoção de pets -> 
+            3.2.3.1 -> Controller que persistirá a remoção a partir do ID do pet -> 
+            3.2.3.2 -> Confirmação do pet removido -> 
+    3.3 -> Crud de vacinas(Cliente) -> 
+        3.3.1 -> Agendamento de vacinas -> 
+            3.3.1.1 -> Formulário de agendamento ->
+            3.3.1.2 -> Controller que persistirá o agendamento ->
+            3.3.1.3 -> Visualização do agendamento ou erro -> 
+        3.3.2 -> Visualização das vacinas agendadas -> 
+            3.3.2.1 -> Lógica de GET das vacinas agendadas para visualização -> 
+        3.3.3 -> Relatório PDF sobre as vacinas -> 
+            3.3.3.1 -> Botão que criará relatorio PDF com os dados das vacinas -> 
+    3.4 -> Crud de vacinas(Veterinário) -> 
+        3.4.1 -> Visualização de vacinas agendadas -> 
+            3.4.1.1 -> Lógica de visualização de todas as vacinas agendadas relacionadas ao veterinário -> 
+        3.4.2 -> Realização das vacinas ->  
+            3.4.2.1 -> Botão que atualizará o status da vacina para realizada -> 
+            3.4.2.2 -> Lógica de atualização do status da vacina a partir do seu ID -> 
+        3.4.3 -> Exclusão de vacinas agendadas ->
+            3.4.3.1 -> Botão de exclusão -> 
+            3.4.2.2 -> Lógica de exclusão a partir do ID de agendamento -> 
+    3.5 -> CRUD Relatório de vacinas(Veterinário -> Opcional) -> 
+        3.5.1 -> Cadastro de relatório -> 
+            3.5.1.1 -> Formulário de cadastro
+            3.5.1.2 -> Lógica de persistência do relatório
+            3.5.1.3 -> Visualização do relatório cadastrado
+        3.5.2 -> Exclusão de relatório -> 
+            3.5.2.1 -> Botão de exclusão do relatório na visualização do mesmo -> 
+            3.5.2.2 -> Lógica de exclusão -> 
+        3.5.3 -> Edição de relatório -> 
+            3.5.3.1 -> Visualização do relatório para atualização -> 
+            3.5.3.2 -> Confirmação da atualização com visualização do dado atualizado -> 
+    
 
 4 -> Documentação:
     4.1 README.md no github
