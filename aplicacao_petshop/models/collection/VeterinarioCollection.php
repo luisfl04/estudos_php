@@ -1,25 +1,24 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/CollectionBase.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
 
-class UsuarioCollection extends CollectionBase
+class VeterinarioCollection extends CollectionBase
 {
     public function criarCollection(array $valores_retorno_banco): array
     {
         $colecao = [];
 
         foreach ($valores_retorno_banco as $linha) {
-            $usuario = new Usuario(
-                $linha['username'],
-                $linha['senha'],
+            $veterinario = new Veterinario(
+                $linha['numero_crmv'],
                 $linha['nome'],
                 $linha['telefone'],
                 $linha['cpf'],
-            $linha['data_nascimento'],
-                $linha['sexo']
+                $linha['data_nascimento'],
+            $linha['sexo'],
             );
-            $colecao[] = $usuario;
+            $colecao[] = $veterinario;
         }
 
         return $colecao;

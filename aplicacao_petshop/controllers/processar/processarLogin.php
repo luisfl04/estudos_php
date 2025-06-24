@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
     else if($tipo_usuario === 'veterinario'){
         $controller_veterinario = new VeterinarioController();
+        $controller_veterinario->loginVeterinario($_POST['username'], $_POST['senha']);
     }
 
 }

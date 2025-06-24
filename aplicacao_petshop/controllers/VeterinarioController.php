@@ -1,16 +1,34 @@
 <?php
-require_once '../models/banco_de_dados/ControladorBanco.php';
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
 
 class VeterinarioController {
-    public function autenticar($usuario, $senha) {
-        $banco = new ControladorBanco();
-        $conn = $banco->abrirConexao();
+    protected $veterinario;
 
-        $stmt = $conn->prepare("SELECT * FROM veterinario WHERE usuario = ? AND senha = ?");
-        $stmt->bind_param("ss", $usuario, $senha);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+    // Construtor
+    public function __construct(Veterinario $veterinario = null) {
+        $this->veterinario = $veterinario;
+    }
 
-        return $resultado->fetch_assoc();
+    // Obter veterinários (retorna array de objetos Veterinario)
+    public function obterVeterinarios(): array {
+        $valores = $this->veterinario->consultarVeterinarioBanco();
+        return $this->veterinario->criarCollection($valores);
+    }
+
+    // Realiza login simples
+    public function loginVeterinario(string $username, string $senha): void {
+        $resposta = $this->veterinario->consultarDadosLogin($username, $senha);
+
+        if ($resposta === true) {
+            header("Location: " . "/estudos_php/aplicacao_petshop/views/dashboards/dashboard_veterinario.php");
+            exit;
+        } else {
+            $_SESSION['mensagem_cadastro'] = "Erro ao autenticar login, tente novamente!";
+            header("Location: " . "/estudos_php/aplicacao_petshop/index.php");
+            exit;
+        }
     }
 }
+
+?>

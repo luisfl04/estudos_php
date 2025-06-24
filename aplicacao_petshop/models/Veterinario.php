@@ -1,6 +1,6 @@
 <?php
-require_once 'banco_de_dados/ControladorBanco.php';
-require_once 'colecoes/VeterinarioCollection.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/VeterinarioCollection.php';
 
 class Veterinario {
     private int $id_veterinario;
@@ -81,18 +81,27 @@ class Veterinario {
         $this->sexo = $novo_sexo;
     }
 
-    // Cadastrar no banco
-    public function cadastrarVeterinarioBanco(): void {
-        $comando_sql = "INSERT INTO veterinario(username, senha, numero_crmv, nome, telefone, cpf, data_nascimento, sexo, endereco_id)
-        VALUES('{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNumeroCrmv()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}', '{$this->endereco->getId()}');";
-
-        $this->controlador_banco->cadastrarDados($comando_sql);
-    }
-
     // Consultar do banco
     public function consultarVeterinarioBanco(): array {
         $comando_sql = "SELECT * FROM view_veterinario";
         $resposta = $this->controlador_banco->consultarBanco($comando_sql);
         return $resposta;
     }
+
+    public function criarCollection($valores_retorno_banco) : array{
+        return $this->veterinario_collection->criarCollection($valores_retorno_banco);
+    }
+
+    public function consultarDadosLogin($username, $senha) : bool{
+        $comando_sql = "
+            SELECT * FROM veterinario
+            WHERE username = '$username' AND senha = '$senha'
+            LIMIT 1;
+        ";
+
+        $resultado = $this->controlador_banco->consultarBanco($comando_sql);
+
+        return !empty($resultado); // retorna true se encontrou, false caso contrário
+    }
+
 }

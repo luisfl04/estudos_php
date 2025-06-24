@@ -17,7 +17,12 @@ class Usuario {
     private $usuario_collection;
 
     // Construtor
-    public function __construct($username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
+    public function __construct(){
+        $this->controlador_banco = new ControladorBanco();
+        $this->usuario_collection = new UsuarioCollection();
+    }
+
+    public function criarUsuario($username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
         $this->id_usuario = 0;
         $this->username = $username;
         $this->senha = $senha;
@@ -26,8 +31,6 @@ class Usuario {
         $this->cpf = $cpf;
         $this->data_nascimento = $data_nascimento;
         $this->sexo = $sexo;
-        $this->controlador_banco = new ControladorBanco();
-        $this->usuario_collection = new UsuarioCollection();
     }
 
     // Getters

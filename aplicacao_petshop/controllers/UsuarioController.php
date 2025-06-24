@@ -6,8 +6,8 @@ class UsuarioController {
     protected $usuario;
 
     // Construtor
-    public function __construct(Usuario $usuario = null) {
-        $this->usuario = $usuario;
+    public function __construct() {
+        $this->usuario = new Usuario();
     }
 
     // Cadastrar usuário no banco
