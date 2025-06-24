@@ -19,4 +19,5 @@ class EnderecoController {
         $resposta = $this->endereco->consultarEnderecoBanco();
         return $this->endereco->criarCollection($resposta);
     }
+
 }

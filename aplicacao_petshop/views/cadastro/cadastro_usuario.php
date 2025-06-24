@@ -5,9 +5,15 @@
     <title>Cadastro de Usuário</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php 
-        include('../includes/cdn.php');
+        include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/cdn.php';
     ?>
 </head>
+
+<?php 
+    session_start();
+    $mensagem = $_SESSION['mensagem_cadastro'] ?? '';
+    unset($_SESSION['mensagem_cadastro']); 
+?>
 
 <body>
 
@@ -15,7 +21,13 @@
         
         <h2 class="mt-4 mb-4 text-center">Cadastro de Usuário</h2>
         
-        <form method="post" action="#">
+        <?php if (!empty($mensagem)): ?>
+            <div class="alert alert-info">
+            <?= htmlspecialchars($mensagem) ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" action="../../controllers/CadastroController.php">
             
             <!-- Dados do Usuário -->   
             <h4 class="mb-3">Dados pessoais</h4>
@@ -23,7 +35,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="usuario" class="form-label">Usuário</label>
-                    <input type="text" maxlength="20" class="form-control" id="usuario" name="usuario" required>
+                    <input type="text" maxlength="20" class="form-control" id="usuario" name="username" required>
                 </div>
                 <div class="col-md-6">
                     <label for="senha" class="form-label">Senha</label>
@@ -50,7 +62,7 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="data_nascimento" class="form-label">Data de Nascimento</label>
-                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
+                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required>
                 </div>
                 
                 <div class="col-md-4">

@@ -1,8 +1,10 @@
 
 <?php
 // Incluindo classes auxiliares:
-include('./banco_de_dados/ControladorBanco.php');
-include('./collection/UsuarioCollection.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/includes/cdn.php';
+
+include('banco_de_dados/ControladorBanco.php');
+include('collection/UsuarioCollection.php');
 
 class Usuario {
     private int $id_usuario;

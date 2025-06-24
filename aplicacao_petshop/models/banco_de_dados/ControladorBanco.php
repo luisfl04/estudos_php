@@ -9,13 +9,13 @@ class ControladorBanco implements BancoDeDados{
     protected $consulta_banco;
 
     // Construct:
-    function __construct(){
+    public function __construct(){
         // Criando conexão com o banco:
         $this->conexao_banco = new mysqli(
-            "127.0.0.1",
+            "localhost",
             "root",
-            "",
-            "petshop"
+            "34512897",
+            "sistema_vacina"
         );
 
         // Verificando se a conexão foi válida:
@@ -52,9 +52,7 @@ class ControladorBanco implements BancoDeDados{
 
     public function desconectarBanco(){
         $this->conexao_banco->close();
-        echo "Instância do banco destruida.";
     }
-
 
 }   
 

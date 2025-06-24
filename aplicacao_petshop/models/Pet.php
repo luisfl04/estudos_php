@@ -2,8 +2,6 @@
 // Incluindo controlador do banco de dados:
 include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
 
-
-
 // Classe que representa a tabela 'PET'.
 class Pet{
     // Atributos:

@@ -1,7 +1,7 @@
     <?php
 // Incluindo classes auxiliares:
-include('./banco_de_dados/ControladorBanco.php');
-include('./collection/EnderecoCollection.php');
+include('banco_de_dados/ControladorBanco.php');
+include('collection/EnderecoCollection.php');
 
 class Endereco {
     private int $id_endereco;
