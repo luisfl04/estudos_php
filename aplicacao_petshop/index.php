@@ -1,33 +1,61 @@
-<!-- login.php -->
+<?php
+    session_start();
+    $mensagem = $_SESSION['mensagem_cadastro'] ?? '';
+    unset($_SESSION['mensagem_cadastro']);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Petshop</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Login - Gerenciamento Vacinas</title>
+    <link rel="stylesheet" href="public/css/index.css">
+    <?php
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/cdn.php';
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
+    ?>
 </head>
-<body class="container mt-5">
-    <h2>Login do Sistema</h2>
-    <form action="controllers/LoginController.php" method="POST" class="mt-4">
-        <div class="mb-3">
-            <label for="username" class="form-label">Usuário</label>
-            <input type="text" name="username" class="form-control" required>
-        </div>
-        
-        <div class="mb-3">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="password" name="senha" class="form-control" required>
-        </div>
+<body>
 
-        <div class="mb-3">
-            <label for="tipo_usuario" class="form-label">Tipo de Usuário</label>
-            <select name="tipo_usuario" class="form-select" required>
-                <option value="cliente">Cliente</option>
-                <option value="veterinario">Veterinário</option>
-            </select>
-        </div>
+    <h1 class="text-center mt-5">Sistema de Vacinas</h1>
 
-        <button type="submit" class="btn btn-primary">Entrar</button>
-    </form>
+    <div class="container">
+
+        <div class="login-container">
+            
+            <h4 class="form-title">Login no Sistema</h4>
+
+            <?php if (!empty($mensagem)): ?>
+                <div class="alert alert-info">
+                <?= htmlspecialchars($mensagem) ?>
+                </div>
+            <?php endif; ?>
+
+
+            <form action="controllers/processar/processarLogin.php" method="post" enctype="multipart/form-data">
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuário</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="tipo_usuario" class="form-label">Tipo de Usuário</label>
+                    <select name="tipo_usuario" id="tipo_usuario" class="form-select" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="usuario">Cliente</option>
+                        <option value="veterinario">Veterinário</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -27,9 +27,9 @@
                 3.1.1.3.1 -> Classe 'CadastroController' -> Ok
                 3.1.1.3.2 -> Classe 'UsuarioController' -> Ok
                 3.1.1.3.3 -> Classe 'EnderecoController' -> Ok
-            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro ->
+            3.1.1.4 -> Mensagem de sucesso ou erro no momento do cadastro -> OK
         3.1.2 -> Login do cliente e veterinário ->
-            3.1.2.1 -> Formulário de login com os campos -> 
+            3.1.2.1 -> Formulário de login com os campos -> OK
             3.1.2.2 -> Controller que irá verificar os dados conforme o tipo de usuário -> 
             3.1.2.3 -> Redirecionamento para página correspondente de acordo com tipo de usuário ou mensagem de erro de autenticação -> 
     3.2 -> CRUD de Pets(Cliente) -> 

@@ -8,7 +8,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/control
 
 class CadastroController {
 
-    public function processarCadastro(): string {
+    public function processarCadastro(): void {
         try {
             // Verificando se todos os campos esperados foram enviados
             $campos_esperados = [
@@ -45,30 +45,18 @@ class CadastroController {
             $enderecoController = new EnderecoController($endereco);
 
             // Persistindo dados no banco
-            $enderecoController->cadastrarEndereco();
-            $usuarioController->cadastrarUsuario();
-
-
-            $_SESSION['mensagem_cadastro'] = "Cadastro realizado com sucesso!";
+            $endereco_id_cadastrado = $enderecoController->cadastrarEndereco();
+            $usuarioController->cadastrarUsuario($endereco_id_cadastrado);
+            
+            $_SESSION['mensagem_cadastro'] = "Seu cadastro foi realizado com sucesso, faça login para acessar o sistema."; 
+            header("Location: " . "/estudos_php/aplicacao_petshop/index.php");
+            exit;
         } catch (Exception $e) {
             $_SESSION['mensagem_cadastro'] = "Erro ao realizar cadastro: " . $e->getMessage();
-        }
-
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
+            header("Location: " . "/estudos_php/aplicacao_petshop/views/cadastro/cadastro_usuario.php");
+            exit;
+        }        
     }
-}
-
-echo "Método  recebeido -> " . $_SERVER['REQUEST_METHOD'];
-
-// Controlando requisição:
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    echo "post";
-    $cadastro = new CadastroController();
-    $cadastro->processarCadastro();
-}
-else{
-    echo "Método de requisição inválido";
 }
 
 ?>

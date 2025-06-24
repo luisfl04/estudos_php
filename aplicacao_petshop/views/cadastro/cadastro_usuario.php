@@ -29,7 +29,7 @@
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="../../controllers/ProcessaCadastro.php">
+        <form method="post" action="../../controllers/processar/processarCadastroUsuario.php" enctype="multipart/form-data">
 
             <!-- Dados do Usuário -->
             <h4 class="mb-3">Dados pessoais</h4>

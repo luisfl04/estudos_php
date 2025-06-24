@@ -80,9 +80,9 @@ class Usuario {
         $this->senha = $nova_senha;
     }
 
-    public function cadastrarUsuarioBanco($id_endereco_relacionado) : void{
+    public function cadastrarUsuarioBanco($endereco_id_relacionado) : void{
         $comando_sql = "insert into usuario(endereco_id, username, senha, nome, telefone, cpf, data_nascimento, sexo)
-        values('{$id_endereco_relacionado}', '{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}');
+        values('{$endereco_id_relacionado}', '{$this->getUsername()}', '{$this->getSenha()}', '{$this->getNome()}', '{$this->getTelefone()}', '{$this->getCpf()}', '{$this->getDataNascimento()}', '{$this->getSexo()}');
         ";
 
         $this->controlador_banco->cadastrarDados($comando_sql);
