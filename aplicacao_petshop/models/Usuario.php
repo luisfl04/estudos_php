@@ -5,20 +5,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/UsuarioCollection.php';
 
 class Usuario {
-    private $id_usuario;
-    private $username;
-    private $senha;
-
-    private  $nome;
-    private  $telefone;
-    private  $cpf;
-    private  $data_nascimento;
-    private  $sexo;
-
+    private int $id_usuario;
+    private string $username;
+    private string $senha;
+    private string $nome;
+    private string $nome;
+    private string $telefone;
+    private string $cpf;
+    private string $data_nascimento;
+    private string $sexo;
     private $controlador_banco;
-
     private $usuario_collection;
-
 
     // Construtor
     public function __construct($id=0, $username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {

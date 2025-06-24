@@ -4,12 +4,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/EnderecoCollection.php';
 
 class Endereco {
-    private $id_endereco;
-    private $rua;
-    private $bairro;
-    private $estado;
-    private $complemento;
-
+    private int $id_endereco;
+    private string $rua;
+    private string $bairro;
+    private string $estado;
+    private string $complemento;
     private $controlador_banco;
     private $endereco_collection;
 
