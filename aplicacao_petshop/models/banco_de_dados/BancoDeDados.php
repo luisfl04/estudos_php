@@ -3,7 +3,7 @@
 interface BancoDeDados{
     public function consultarValoresBanco($sql);
     public function autenticarUsuarioBanco($sql);
-    public function obterDados();
+    public function obterDados($array);
     public function cadastrarDados($sql);
     public function desconectarBanco();
 }

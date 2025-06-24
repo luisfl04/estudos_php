@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
 
@@ -21,6 +25,7 @@ class VeterinarioController {
         $resposta = $this->veterinario->consultarDadosLogin($username, $senha);
 
         if ($resposta === true) {
+            $_SESSION['nome_usuario'] = $username;
             header("Location: " . "/estudos_php/aplicacao_petshop/views/dashboards/dashboard_veterinario.php");
             exit;
         } else {

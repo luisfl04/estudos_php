@@ -34,7 +34,7 @@ class ControladorBanco implements BancoDeDados{
 
         // Fazendo consulta no banco:
         $this->consulta_banco = $this->conexao_banco->query($consulta_sql);
-        $resposta = $this->obterDados();
+        $resposta = $this->obterDados($this->consulta_banco);
         return $resposta;
     }
 
@@ -54,10 +54,17 @@ class ControladorBanco implements BancoDeDados{
         
     }
 
-    public function obterDados(): array{
-        while($valor = $this->consulta_banco->fetch_array(MYSQLI_ASSOC)){
+    public function obterDados($valores_banco): array{
+        
+        if(!empty($valores_banco)){
+            $array_nulo = [];
+            return $array_nulo;
+        }
+        
+        while($valor = $valores_banco->fetch_array(MYSQLI_ASSOC)){
             $valores[] = $valor;
         }
+
         return $valores;
     }
 

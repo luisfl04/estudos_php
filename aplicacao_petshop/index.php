@@ -1,5 +1,7 @@
 <?php
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+    }
     $mensagem = $_SESSION['mensagem_cadastro'] ?? '';
     unset($_SESSION['mensagem_cadastro']);
 ?>

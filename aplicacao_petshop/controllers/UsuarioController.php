@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
 
 class UsuarioController {
@@ -25,6 +27,7 @@ class UsuarioController {
     public function loginUsuario(string $username, string $senha): void{
         $resposta =  $this->usuario->consultarDadosLogin($username, $senha);
         if($resposta === true){
+            $_SESSION['nome_usuario'] = $username;
             header("Location: " . "/estudos_php/aplicacao_petshop/views/dashboards/dashboard_usuario.php");
             exit;
         }

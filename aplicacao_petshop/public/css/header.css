@@ -1,0 +1,28 @@
+.header-custom {
+    background-color: #0d6efd;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #0a58ca;
+    }
+
+.logo {
+    display: flex;
+    align-items: center;
+    }
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+    }
+
+.bem-vindo {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.conteudo {
+    padding: 30px;
+}
