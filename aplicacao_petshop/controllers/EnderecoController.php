@@ -1,8 +1,8 @@
 <?php
-include include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
 
 class EnderecoController {
-    protected Endereco $endereco;
+    protected $endereco;
 
     // Construtor
     public function __construct(Endereco $endereco) {

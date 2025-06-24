@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/EnderecoController.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/UsuarioController.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/EnderecoController.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/UsuarioController.php';
 
 class CadastroController {
 
@@ -21,8 +21,6 @@ class CadastroController {
                     throw new Exception("Campo obrigatório ausente: $campo");
                 }
             }
-
-            var_dump($_POST); // ou echo json_encode($_POST);
 
             // Criando instância de Usuario
             $usuario = new Usuario(
@@ -46,8 +44,6 @@ class CadastroController {
                 $_POST['complemento']
             );
             $enderecoController = new EnderecoController($endereco);
-
-            echo "Endereco criado";
 
             // Persistindo dados no banco
             $usuarioController->cadastrarUsuario();

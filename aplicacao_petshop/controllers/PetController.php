@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 // Incluindo classe modelo:
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
 
 class PetController{
     // Intância da classe de banco de dados:
@@ -11,11 +11,11 @@ class PetController{
     public function __construct(){
         $this->model_pet = new Pet();
     }
-    
+
     // Método que controlará o fluxo
     public function controlarRequisicao($info){
         if ($info === 'obterPet'){
-            $this->obterPet();    
+            $this->obterPet();
         }
         else{
             return "Método de requisição não permitido!";
@@ -31,10 +31,10 @@ class PetController{
 
         // Criando objeto pet:
         $this->model_pet->criarPet( $nome_do_pet, $apelido, $tipo_do_pet, $dono_do_pet);
-    
+
         // Cadastrando o objeto no banco de dados:
         $resposta_cadastro = $this->model_pet->cadastrarPetBanco();
-    
+
         echo $resposta_cadastro;
     }
 

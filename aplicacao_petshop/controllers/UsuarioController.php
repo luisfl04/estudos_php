@@ -1,9 +1,9 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
 
 class UsuarioController {
-    protected Usuario $usuario;
+    protected $usuario;
 
     // Construtor
     public function __construct(Usuario $usuario) {
@@ -23,7 +23,7 @@ class UsuarioController {
 
     // Realiza login simples (exemplo)
     public function loginUsuario(string $username, string $senha): bool {
-        $resposta =  $this->usuario->consultarDadosLogin($username, $senha);  
+        $resposta =  $this->usuario->consultarDadosLogin($username, $senha);
         return $resposta;
     }
 }

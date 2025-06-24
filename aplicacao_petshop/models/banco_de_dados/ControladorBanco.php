@@ -1,7 +1,7 @@
-<?php 
+<?php
 // Classe que implementa os métodos da interface 'PersistirBanco'.
 
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/BancoDeDados.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/BancoDeDados.php';
 
 class ControladorBanco implements BancoDeDados{
 
@@ -12,7 +12,7 @@ class ControladorBanco implements BancoDeDados{
     public function __construct(){
         // Criando conexão com o banco:
         $this->conexao_banco = new mysqli(
-            "localhost",
+            "127.0.0.1",
             "root",
             "34512897",
             "sistema_vacina"
@@ -20,7 +20,7 @@ class ControladorBanco implements BancoDeDados{
 
         // Verificando se a conexão foi válida:
         if (mysqli_connect_errno()){
-            $this->conexao_banco->close(); 
+            $this->conexao_banco->close();
             echo "Erro ao criar controlador do banco de dados";
         }
 
@@ -37,7 +37,7 @@ class ControladorBanco implements BancoDeDados{
         $resposta = $this->obterDados();
         return $resposta;
     }
-    
+
     public function obterDados():array{
         while($valor = $this->consulta_banco->fetch_array(MYSQLI_ASSOC)){
             $valores[] = $valor;
@@ -54,6 +54,6 @@ class ControladorBanco implements BancoDeDados{
         $this->conexao_banco->close();
     }
 
-}   
+}
 
 ?>

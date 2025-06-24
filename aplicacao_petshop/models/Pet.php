@@ -1,6 +1,6 @@
-<?php 
+<?php
 // Incluindo controlador do banco de dados:
-include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
 
 // Classe que representa a tabela 'PET'.
 class Pet{
@@ -33,7 +33,7 @@ class Pet{
         return $this->id_pet;
     }
 
-    public function getNomePet(): string{ 
+    public function getNomePet(): string{
         return $this->nome_do_pet;
     }
 
@@ -44,7 +44,7 @@ class Pet{
     public function getTipoPet(){
         return $this->tipo_do_pet;
     }
-    
+
     public function getDonoPet(){
         return $this->dono_do_pet;
     }
