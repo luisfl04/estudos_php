@@ -16,13 +16,8 @@ class Usuario {
     private $controlador_banco;
     private $usuario_collection;
 
-    // Construtor
-    public function __construct(){
-        $this->controlador_banco = new ControladorBanco();
-        $this->usuario_collection = new UsuarioCollection();
-    }
-
-    public function criarUsuario($username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
+        
+    public function __construct($username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
         $this->id_usuario = 0;
         $this->username = $username;
         $this->senha = $senha;
@@ -31,6 +26,8 @@ class Usuario {
         $this->cpf = $cpf;
         $this->data_nascimento = $data_nascimento;
         $this->sexo = $sexo;
+        $this->controlador_banco = new ControladorBanco();
+        $this->usuario_collection = new UsuarioCollection();
     }
 
     // Getters
@@ -93,7 +90,7 @@ class Usuario {
 
     public function consultarUsuarioBanco() : array{
         $comando_sql = "select * from view_usuario";
-        $resposta = $this->controlador_banco->consultarBanco($comando_sql);
+        $resposta = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resposta;
     }
 
@@ -108,7 +105,7 @@ class Usuario {
             LIMIT 1;
         ";
 
-        $resultado = $this->controlador_banco->consultarBanco($comando_sql);
+        $resultado = $this->controlador_banco->autenticarUsuarioBanco($comando_sql);
 
         return !empty($resultado); // retorna true se encontrou, false caso contrário
     }

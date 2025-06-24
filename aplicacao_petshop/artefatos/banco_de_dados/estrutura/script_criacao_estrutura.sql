@@ -37,7 +37,7 @@ CREATE TABLE veterinario (
     id_veterinario INT NOT NULL AUTO_INCREMENT,
     endereco_id INT NOT NULL,
 
-    usuario VARCHAR(20) NOT NULL UNIQUE,
+    username VARCHAR(20) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     numero_crmv VARCHAR(5) NOT NULL UNIQUE,
     nome VARCHAR(50) NOT NULL,

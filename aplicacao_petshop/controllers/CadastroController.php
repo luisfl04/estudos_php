@@ -23,8 +23,7 @@ class CadastroController {
             }
 
             // Criando instância de Usuario
-            $usuario = new Usuario();
-            $usuario->criarUsuario(
+            $usuario = new Usuario(
                 $_POST['username'],
                 $_POST['senha'],
                 $_POST['nome'],
@@ -33,7 +32,7 @@ class CadastroController {
                 $_POST['data_nascimento'],
                 $_POST['sexo']
             );
-            $usuarioController = new UsuarioController();
+            $usuarioController = new UsuarioController($usuario);
 
             // Criando instância de Endereco
             $endereco = new Endereco(

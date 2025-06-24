@@ -10,13 +10,13 @@ class UsuarioCollection extends CollectionBase
         $colecao = [];
 
         foreach ($valores_retorno_banco as $linha) {
-            $usuario = new Usuario(
+            $usuario = new Usuario(    
                 $linha['username'],
                 $linha['senha'],
                 $linha['nome'],
                 $linha['telefone'],
                 $linha['cpf'],
-            $linha['data_nascimento'],
+                $linha['data_nascimento'],
                 $linha['sexo']
             );
             $colecao[] = $usuario;

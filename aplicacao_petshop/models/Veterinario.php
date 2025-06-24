@@ -17,6 +17,8 @@ class Veterinario {
     private VeterinarioCollection $veterinario_collection;
 
     public function __construct(
+        string $username,
+        string $senha,
         string $numero_crmv,
         string $nome,
         string $telefone,
@@ -24,6 +26,8 @@ class Veterinario {
         string $data_nascimento,
         string $sexo
     ) {
+        $this->username = $username;
+        $this->senha = $senha;
         $this->numero_crmv = $numero_crmv;
         $this->nome = $nome;
         $this->telefone = $telefone;
@@ -84,7 +88,7 @@ class Veterinario {
     // Consultar do banco
     public function consultarVeterinarioBanco(): array {
         $comando_sql = "SELECT * FROM view_veterinario";
-        $resposta = $this->controlador_banco->consultarBanco($comando_sql);
+        $resposta = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resposta;
     }
 
@@ -99,9 +103,8 @@ class Veterinario {
             LIMIT 1;
         ";
 
-        $resultado = $this->controlador_banco->consultarBanco($comando_sql);
-
-        return !empty($resultado); // retorna true se encontrou, false caso contrário
+        $resultado = $this->controlador_banco->autenticarUsuarioBanco($comando_sql);
+        return $resultado; // retorna true se encontrou, false caso contrário
     }
 
 }

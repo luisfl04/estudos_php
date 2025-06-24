@@ -57,7 +57,7 @@ class Pet{
 
     public function consultarPetBanco(){
         $comando_sql = "select * from pet";
-        $resposta_pets = $this->controlador_banco->consultarBanco($comando_sql);
+        $resposta_pets = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resposta_pets;
     }
     

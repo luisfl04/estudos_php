@@ -24,7 +24,7 @@ class VeterinarioController {
             header("Location: " . "/estudos_php/aplicacao_petshop/views/dashboards/dashboard_veterinario.php");
             exit;
         } else {
-            $_SESSION['mensagem_cadastro'] = "Erro ao autenticar login, tente novamente!";
+            $_SESSION['mensagem_cadastro'] = "Login ou senha inválidos! tente novamente";
             header("Location: " . "/estudos_php/aplicacao_petshop/index.php");
             exit;
         }

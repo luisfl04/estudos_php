@@ -63,6 +63,6 @@ class Vacina {
 
     public function consultarVacinaBanco(): array {
         $sql = "SELECT * FROM view_vacina"; // ou 'vacina' se não houver view
-        return $this->controlador_banco->consultarBanco($sql);
+        return $this->controlador_banco->consultarValoresBanco($sql);
     }
 }

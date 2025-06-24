@@ -11,6 +11,8 @@ class VeterinarioCollection extends CollectionBase
 
         foreach ($valores_retorno_banco as $linha) {
             $veterinario = new Veterinario(
+                $linha['username'],
+                $linha['senha'],
                 $linha['numero_crmv'],
                 $linha['nome'],
                 $linha['telefone'],

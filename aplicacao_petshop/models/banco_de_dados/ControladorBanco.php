@@ -27,7 +27,7 @@ class ControladorBanco implements BancoDeDados{
     }
 
     // Métodos da interface:
-    public function consultarBanco($consulta_sql) : array{
+    public function consultarValoresBanco($consulta_sql) : array{
         /* Método que atualiza o valor do atributo 'consulta_sql' para ser uma consulta
         à uma tabela de acordo com o valor do parâmetro, que é o nome da tabela pesquisada.
         */
@@ -38,7 +38,23 @@ class ControladorBanco implements BancoDeDados{
         return $resposta;
     }
 
-    public function obterDados():array{
+    public function autenticarUsuarioBanco($sql): bool {
+
+        // Executa a consulta SQL
+        $resultado = $this->conexao_banco->query($sql);
+
+        // Verifica se encontrou alguma linha
+        if ($resultado && $resultado->num_rows > 0) {
+            $this->desconectarBanco();
+            return true;
+        } else {
+            $this->desconectarBanco();
+            return false;
+        }
+        
+    }
+
+    public function obterDados(): array{
         while($valor = $this->consulta_banco->fetch_array(MYSQLI_ASSOC)){
             $valores[] = $valor;
         }

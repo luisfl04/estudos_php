@@ -97,7 +97,7 @@ class Endereco {
 
     public function consultarEnderecoBanco() {
         $comando_sql = "SELECT * FROM view_endereco;";
-        $resposta = $this->controlador_banco->consultarBanco($comando_sql);
+        $resposta = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resposta;
     }
 

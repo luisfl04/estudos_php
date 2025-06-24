@@ -6,8 +6,8 @@ class UsuarioController {
     protected $usuario;
 
     // Construtor
-    public function __construct() {
-        $this->usuario = new Usuario();
+    public function __construct(Usuario $usuario) {
+        $this->usuario = $usuario;
     }
 
     // Cadastrar usuário no banco
@@ -29,7 +29,7 @@ class UsuarioController {
             exit;
         }
         else{   
-            $_SESSION['mensagem_cadastro'] = "Erro ao autenticar login, tente novamente! ";
+            $_SESSION['mensagem_cadastro'] = "Login ou senha inválidos! tente novamente.";
             header("Location: " . "/estudos_php/aplicacao_petshop/index.php");
             exit;
         }
