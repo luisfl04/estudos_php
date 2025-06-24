@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-include('../models/Usuario.php');
-include('../models/Endereco.php');
-include('UsuarioController.php');
-include('EnderecoController.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Endereco.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Usuario.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/EnderecoController.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/UsuarioController.php';
 
 class CadastroController {
 
@@ -52,13 +52,13 @@ class CadastroController {
             // Persistindo dados no banco
             $usuarioController->cadastrarUsuario();
             $enderecoController->cadastrarEndereco();
-            
+
 
             $_SESSION['mensagem_cadastro'] = "Cadastro realizado com sucesso!";
         } catch (Exception $e) {
             $_SESSION['mensagem_cadastro'] = "Erro ao realizar cadastro: " . $e->getMessage();
         }
-    
+
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }

@@ -5,15 +5,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco
 include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/UsuarioCollection.php';
 
 class Usuario {
-    private int $id_usuario;
-    private string $username;
-    private string $senha;
+    private $id_usuario;
+    private $username;
+    private $senha;
 
-    private string $nome;
-    private string $telefone;
-    private string $cpf;
-    private string $data_nascimento;
-    private string $sexo;
+    private  $nome;
+    private  $telefone;
+    private  $cpf;
+    private  $data_nascimento;
+    private  $sexo;
 
     private $controlador_banco;
 
@@ -21,7 +21,7 @@ class Usuario {
 
 
     // Construtor
-    public function __construct(int $id=0, string $username, string $senha, string $nome, string $telefone, string $cpf, string $data_nascimento, string $sexo) {
+    public function __construct($id=0, $username, $senha, $nome, $telefone, $cpf, $data_nascimento, $sexo) {
         $this->id_usuario = $id;
         $this->username = $username;
         $this->senha = $senha;
@@ -33,20 +33,20 @@ class Usuario {
         $this->controlador_banco = new ControladorBanco();
         $this->usuario_collection = new UsuarioCollection();
     }
-    
+
     // Getters
     public function getId() : int{
         return $this->id_usuario;
     }
-    
+
     public function getUsername(): string {
         return $this->username;
     }
-    
+
     public function getSenha(): string {
         return $this->senha;
     }
-    
+
     public function getNome(): string {
         return $this->nome;
     }
@@ -104,7 +104,7 @@ class Usuario {
 
     public function consultarDadosLogin($username, $senha) : bool{
         $comando_sql = "
-            SELECT * FROM usuario 
+            SELECT * FROM usuario
             WHERE username = '$username' AND senha = '$senha'
             LIMIT 1;
         ";

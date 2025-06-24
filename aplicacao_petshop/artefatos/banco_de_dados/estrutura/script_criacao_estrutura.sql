@@ -1,9 +1,9 @@
-/* Sript de criação do banco de dados da aplicação de gerenciamento de vacinas em um petshop */ 
+/* Sript de criação do banco de dados da aplicação de gerenciamento de vacinas em um petshop */
 
-/* Tabela Endereco''*/
+/* Tabela 'Endereco' */
 CREATE TABLE endereco (
     id_endereco INT NOT NULL AUTO_INCREMENT,
-    
+
     rua VARCHAR(50) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE endereco (
 CREATE TABLE usuario (
     id_usuario INT NOT NULL AUTO_INCREMENT,
     endereco_id INT NOT NULL,
-    
+
     username VARCHAR(20) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     nome VARCHAR(50) NOT NULL,
@@ -113,11 +113,3 @@ CREATE TABLE agendamento_vacina (
     FOREIGN KEY (veterinario_id) REFERENCES veterinario(id_veterinario),
     FOREIGN KEY (vacina_id) REFERENCES vacina(id_vacina)
 );
-
-
-
-
-
-
-
-

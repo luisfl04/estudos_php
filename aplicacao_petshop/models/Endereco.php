@@ -4,22 +4,22 @@ include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco
 include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/EnderecoCollection.php';
 
 class Endereco {
-    private int $id_endereco;
-    private string $rua;
-    private string $bairro;
-    private string $estado;
-    private string $complemento;
+    private $id_endereco;
+    private $rua;
+    private  $bairro;
+    private $estado;
+    private $complemento;
 
     private $controlador_banco;
     private $endereco_collection;
 
     // Construtor
     public function __construct(
-        int $id = 0,
-        string $rua,
-        string $bairro,
-        string $estado,
-        string $complemento
+        $id = 0,
+        $rua,
+        $bairro,
+        $estado,
+        $complemento
     ) {
         $this->id_endereco = $id;
         $this->rua = $rua;
