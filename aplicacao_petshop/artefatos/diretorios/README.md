@@ -1,0 +1,71 @@
+# 📁 Estrutura de Diretórios da Aplicação `APLICACAO_PETSHOP`
+
+```
+APLICACAO_PETSHOP/
+│
+├── artefatos/
+│
+├── controllers/
+│   ├── logout/
+│   │   └── logout.php
+│   ├── processar/
+│   │   ├── processarCadastroUsuario.php
+│   │   └── processarLogin.php
+│   ├── AgendamentoVacinaController.php
+│   ├── CadastroController.php
+│   ├── EnderecoController.php
+│   ├── LoginController.php
+│   ├── PetController.php
+│   ├── UsuarioController.php
+│   └── VacinaController.php
+│
+├── models/
+│   ├── banco_de_dados/
+│   │   ├── BancoDeDados.php
+│   │   └── ControladorBanco.php
+│   ├── collection/
+│   │   ├── AgendamentoVacinaCollection.php
+│   │   ├── EnderecoCollection.php
+│   │   ├── CollectionBase.php
+│   │   ├── PetCollection.php
+│   │   ├── UsuarioCollection.php
+│   │   └── VeterinarioCollection.php
+│   ├── AgendamentoVacina.php
+│   ├── Endereco.php
+│   ├── Pet.php
+│   ├── Usuario.php
+│   ├── Vacina.php
+│   └── Veterinario.php
+│
+├── public/
+│   ├── css/
+│   │   └── header.css
+│   ├── img/
+│   │   └── logo_vacina.png
+│
+├── vendor/
+│
+├── views/
+│   ├── atualizacao/
+│   │   └── atualizar_pet.php
+│   ├── cadastro/
+│   │   ├── cadastrar_agendamento_vacina.php
+│   │   ├── cadastrar_pet.php
+│   │   └── cadastro_usuario.php
+│   ├── crud/
+│   │   ├── agendamentos_vacina_cliente.php
+│   │   └── crud_agendamentos_vacina_veterinario.php
+│   ├── crud_petshop/
+│   ├── dashboards/
+│   │   └── dashboard_usuario.php
+│   └── includes/
+│       ├── cabecalho.php
+│       └── rodape.php
+│
+├── relatorios/
+│   ├── relatorio_agendamento_vacina_cliente.php
+│   └── relatorio_agendamento_vacina_veterinario.php
+│
+├── backlog_tarefas.txt
+└── index.php
+```
