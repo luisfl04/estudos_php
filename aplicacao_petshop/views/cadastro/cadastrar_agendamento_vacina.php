@@ -21,7 +21,7 @@ $veterinarios = $veterinarioModel->consultarVeterinarioBanco();
 <div class="container mt-5">
     <h2 class="text-center mb-4">Agendar Vacina</h2>
 
-    <form action="../controllers/AgendamentoVacinaController.php" method="POST">
+    <form action="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php" method="POST">
         <input type="hidden" name="acao" value="cadastrar">
 
         <div class="mb-3">

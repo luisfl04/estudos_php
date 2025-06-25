@@ -15,9 +15,10 @@ class AgendamentoVacina {
 
 
     public function __construct(int $pet_id, int $veterinario_id, int $vacina_id, string $data_agendamento) {
-        $this->pet = $pet_id;
-        $this->veterinario = $veterinario_id;
-        $this->vacina = $vacina_id;
+        $this->id_agendamento_vacina = 0;
+        $this->pet_id = $pet_id;
+        $this->veterinario_id = $veterinario_id;
+        $this->vacina_id = $vacina_id;
         $this->data_agendamento = $data_agendamento;
         $this->data_realizacao = "";
         $this-> agendamento_vacina_collection = new AgendamentoVacinaCollection();
@@ -69,12 +70,13 @@ class AgendamentoVacina {
     // Métodos de banco
     public function cadastrarAgendamentoVacinaBanco(): void {
         $sql = "
-            INSERT INTO agendamento_vacina (pet_id, veterinario_id, vacina_id, data_agendamento)
+            INSERT INTO agendamento_vacina (pet_id, veterinario_id, vacina_id, data_agendamento, status_agendamento)
             VALUES (
                 {$this->getPetId()}, 
                 {$this->getVeterinarioId()}, 
                 {$this->getVacinaId()}, 
-                '{$this->getDataAgendamento()}'
+                '{$this->getDataAgendamento()}',
+                'agendado'
             );
         ";
         $this->controlador_banco->cadastrarDados($sql);

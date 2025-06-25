@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Vacina.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
 
 class AgendamentoVacinaController {
     protected AgendamentoVacina $agendamento_vacina;
@@ -18,40 +19,15 @@ class AgendamentoVacinaController {
     // Cadastrar agendamento no banco a partir dos dados do formulário
     public function cadastrarAgendamentoVacinaFromRequest(array $dados): void {
         // Instanciar objetos relacionados com base nos IDs
-        $petModel = new Pet();
-        $vacinaModel = new Vacina();
-        $veterinarioModel = new Veterinario();
-
-        $pet_data = $petModel->buscarPorId($dados['pet_id']);
-        $vacina_data = $vacinaModel->buscarPorId($dados['vacina_id']);
-        $veterinario_data = $veterinarioModel->buscarPorId($dados['veterinario_id']);
-
-        // Criar objetos reais a partir dos dados do banco
-        $pet = new Pet();
-        $pet->preencherDados($pet_data); // método auxiliar que você precisa criar no modelo Pet
-
-        $vacina = new Vacina(
-            $vacina_data['nome'],
-            $vacina_data['tipo_pet'],
-            $vacina_data['descricao'],
-            $vacina_data['valor']
-        );
-
-        $veterinario = new Veterinario(
-            endereco: null, // caso não precise carregar endereço agora
-            numero_crmv: $veterinario_data['numero_crmv'],
-            nome: $veterinario_data['nome'],
-            telefone: $veterinario_data['telefone'],
-            cpf: $veterinario_data['cpf'],
-            data_nascimento: $veterinario_data['data_nascimento'],
-            sexo: $veterinario_data['sexo']
-        );
+        $petModel = new Pet("", " ", "", 0, "");
+        $vacinaModel = new Vacina("", 0, "", 0.0);
+        $veterinarioModel = new Veterinario("", "", "", "", "", "", "", "");
 
         // Criar objeto de Agendamento
         $agendamento = new AgendamentoVacina(
-            $pet,
-            $veterinario,
-            $vacina,
+            $dados['id_pet'],
+            $dados['id_veterinario'],
+            $dados['id_vacina'],
             $dados['data_agendamento']
         );
 
@@ -59,43 +35,44 @@ class AgendamentoVacinaController {
         $agendamento->cadastrarAgendamentoVacinaBanco();
     }
 
-    // Obter todos os agendamentos cadastrados
-    public function obterAgendamentosVacinas(): array {
-        $agendamento = new AgendamentoVacina(null, null, null, '');
-        $valores = $agendamento->consultarAgendamentoVacinaBanco();
-        return $agendamento->criarCollection($valores);
-    }
+    // // Obter todos os agendamentos cadastrados
+    // public function obterAgendamentosVacinas(): array {
+    //     $agendamento = new AgendamentoVacina(null, null, null, '');
+    //     $valores = $agendamento->consultarAgendamentoVacinaBanco();
+    //     return $agendamento->criarCollection($valores);
+    // }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['acao'] === 'cadastrar') {
     $controller = new AgendamentoVacinaController();
     $controller->cadastrarAgendamentoVacinaFromRequest($_POST);
-    header("Location: ../views/crud_agendamentos.php");
+    header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_agendamentos_vacina_cliente.php");
     exit;
 }
 
-// Lógica chamada via GET para realizar vacina
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if(isset($_GET['realizar'])){
-    
-        $id = intval($_GET['realizar']);
-    
-        $modelo = new AgendamentoVacina();
-        $modelo->realizarVacina($id);
-    
-        header("Location: ../views/crud_agendamentos_veterinario.php");
-        exit;
-    }
-    else if(isset($_GET['excluir'])){
-        $id = intval($_GET['excluir']);
 
-        $modelo = new AgendamentoVacina();
-        $modelo->excluirAgendamentoVacina($id);
+// // Lógica chamada via GET para realizar vacina
+// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//     if(isset($_GET['realizar'])){
+    
+//         $id = intval($_GET['realizar']);
+    
+//         $modelo = new AgendamentoVacina();
+//         $modelo->realizarVacina($id);
+    
+//         header("Location: ../views/crud_agendamentos_veterinario.php");
+//         exit;
+//     }
+//     else if(isset($_GET['excluir'])){
+//         $id = intval($_GET['excluir']);
 
-        header("Location: ../views/crud_agendamentos_veterinario.php");
-        exit;
-    }
-}
+//         $modelo = new AgendamentoVacina();
+//         $modelo->excluirAgendamentoVacina($id);
+
+//         header("Location: ../views/crud_agendamentos_veterinario.php");
+//         exit;
+//     }
+// }
 
 
 ?>
