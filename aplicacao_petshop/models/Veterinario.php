@@ -99,12 +99,12 @@ class Veterinario {
     public function consultarDadosLogin($username, $senha) : array | null{
         $comando_sql = "
             SELECT * FROM veterinario
-            WHERE username = '$username' AND senha = '$senha'
+            WHERE username ='$username' AND senha = '$senha'
             LIMIT 1;
         ";
 
         $resultado = $this->controlador_banco->consultarValoresBanco($comando_sql);
-        return $resultado; // retorna true se encontrou, false caso contrário
+        return !empty($resultado) ? $resultado[0] : null;
     }
 
     public function buscarPorId($id_veterinario): ? array {

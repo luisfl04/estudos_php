@@ -27,7 +27,7 @@ class UsuarioController {
     public function loginUsuario(string $username, string $senha): void{
         $resposta =  $this->usuario->consultarDadosLogin($username, $senha);
         if($resposta){
-            $_SESSION['id_usuario'] = $resposta['id_usuario']; // ou 'id_usuario' dependendo da sua tabela
+            $_SESSION['id_usuario'] = $resposta['id_usuario']; 
             $_SESSION['username'] = $resposta['username'];
             $_SESSION['nome'] = $resposta['nome'];
             header("Location: " . "/estudos_php/aplicacao_petshop/views/dashboards/dashboard_usuario.php");

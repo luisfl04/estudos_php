@@ -7,23 +7,27 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/
 
 class AgendamentoVacina {
     private int $id_agendamento_vacina;
+    private int $usuario_relacionado_id;
     private int $pet_id;
     private int $veterinario_id;
     private int $vacina_id;
     private string $data_agendamento;
     private string $data_realizacao;
+    private string $status_agendamento;
 
     private ControladorBanco $controlador_banco;
     private AgendamentoVacinaCollection $agendamento_vacina_collection;
 
 
-    public function __construct(int $pet_id, int $veterinario_id, int $vacina_id, string $data_agendamento) {
+    public function __construct(int $pet_id, int $veterinario_id, int $vacina_id, string $data_agendamento, int $usuario_relacionado_id) {
         $this->id_agendamento_vacina = 0;
         $this->pet_id = $pet_id;
         $this->veterinario_id = $veterinario_id;
         $this->vacina_id = $vacina_id;
         $this->data_agendamento = $data_agendamento;
         $this->data_realizacao = "";
+        $this->usuario_relacionado_id = $usuario_relacionado_id;
+        $this->status_agendamento = "agendado";
         $this-> agendamento_vacina_collection = new AgendamentoVacinaCollection();
         $this->controlador_banco = new ControladorBanco();
     }
@@ -31,6 +35,11 @@ class AgendamentoVacina {
     // Getters
     public function getId(): int{
         return $this->id_agendamento_vacina;
+    }
+
+    public function getUsuarioRelacionadoId(): int{
+        $id_usuario = (int)$this->usuario_relacionado_id;
+        return $id_usuario;
     }
 
     public function getPetId(): int{
@@ -53,6 +62,10 @@ class AgendamentoVacina {
         return $this->data_realizacao;
     }
 
+    public function getStatusAgendamento(): string {
+        return $this->status_agendamento;
+    }
+
     // Setters
     public function setId($novo_id): void{
         $this->id_agendamento_vacina = $novo_id;
@@ -66,41 +79,51 @@ class AgendamentoVacina {
         $this->data_realizacao = $data_realizacao;
     }
 
+    public function setStatusAgendamento(): void {
+        if($this->status_agendamento === 'agendado'){
+            $this->status_agendamento = 'realizado';
+        }
+        else{
+            $this->status_agendamento = 'agendado';
+        }
+    }
+
     // Métodos de banco
     public function cadastrarAgendamentoVacinaBanco(): void {
         $sql = "
-            INSERT INTO agendamento_vacina (pet_id, veterinario_id, vacina_id, data_agendamento, status_agendamento)
+            INSERT INTO agendamento_vacina (pet_id, veterinario_id, vacina_id, data_agendamento, status_agendamento, usuario_relacionado_id)
             VALUES (
                 {$this->getPetId()}, 
                 {$this->getVeterinarioId()}, 
                 {$this->getVacinaId()}, 
                 '{$this->getDataAgendamento()}',
-                'agendado'
+                'agendado',
+                '{$this->getUsuarioRelacionadoId()}'
             );
         ";
         $this->controlador_banco->cadastrarDados($sql);
     }
 
-    public function consultarAgendamentoVacinaBanco(): array {
-        $sql = "SELECT * FROM view_agendamento_vacina";
+    public function consultarAgendamentoVacinaBancoUsuario(): array {
+        $sql = "
+        SELECT * FROM agendamento_vacina
+        WHERE usuario_relacionado_id='{$this->getUsuarioRelacionadoId()}' 
+        ";
+
         $valores_banco = $this->controlador_banco->consultarValoresBanco($sql);
         $objetos =  $this->criarCollection($valores_banco);
         return $objetos;
     }
 
-    public function consultarAgendamentosPorVeterinario(int $id_vet): array {
+    public function consultarAgendamentoVacinaBancoVeterinario($id_veterinario): array {
         $sql = "
-            SELECT 
-                agendamento_vacina.*,
-                pet.apelido AS apelido_pet,
-                vacina.nome AS nome_vacina
-            FROM agendamento_vacina
-            JOIN pet ON pet.id = agendamento_vacina.pet_id
-            JOIN vacina ON vacina.id_vacina = agendamento_vacina.vacina_id
-            WHERE agendamento_vacina.veterinario_id = {$id_vet}
+            SELECT * FROM agendamento_vacina
+            WHERE veterinario_id='{$id_veterinario}' 
         ";
 
-        return $this->controlador_banco->consultarValoresBanco($sql);
+        $valores_banco = $this->controlador_banco->consultarValoresBanco($sql);
+        $objetos =  $this->criarCollection($valores_banco);
+        return $objetos;
     }
 
     public function realizarVacina(int $id_agendamento): void {

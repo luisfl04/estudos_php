@@ -14,7 +14,8 @@ class AgendamentoVacinaCollection extends CollectionBase
                 $linha['pet_id'],
                 $linha['veterinario_id'],
                 $linha['vacina_id'],
-                $linha['data_agendamento']
+                $linha['data_agendamento'],
+                $linha['usuario_relacionado_id'],
             );
             $agendamento_vacina->setId($linha['id_agendamento_vacina']);
             $colecao[] = $agendamento_vacina;

@@ -1,18 +1,25 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$id_usuario = $_SESSION['id_usuario'];
+
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/AgendamentoVacina.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/header.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
 ;
-$agendamento = new AgendamentoVacina(0, 0, 0, "");
-$agendamentos = $agendamento->consultarAgendamentoVacinaBanco(); 
+$agendamento = new AgendamentoVacina(0, 0, 0, "", $id_usuario);
+$agendamentos = $agendamento->consultarAgendamentoVacinaBancoUsuario(); 
 ?>
 
-<div class="container my-5">
+<div class="container my-5" style="height:80vh;">
+    
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold">Meus Agendamentos de Vacinas</h2>
         <div>
-            <a href="/estudos_php/aplicacao_petshop/views/cadastro/cadastrar_agendamento_vacina.php" class="btn btn-success me-2">Agendar Nova Vacina</a>
-            <a href="relatorio_vacinas.php" target="_blank" class="btn btn-primary">Gerar Relatório PDF</a>
+            <a href="/estudos_php/aplicacao_petshop/views/cadastro/cadastrar_agendamento_vacina_cliente.php" class="btn btn-success me-2">Agendar Nova Vacina</a>
+            <a href="/estudos_php/aplicacao_petshop/views/relatorios/relatorio_agendamento_vacina.php" target="_blank" class="btn btn-primary">Gerar Relatório PDF</a>
         </div>
     </div>
 
@@ -38,7 +45,7 @@ $agendamentos = $agendamento->consultarAgendamentoVacinaBanco();
                             <td>
                                 <?= $agendamento->getDataRealizacao() 
                                     ? date('d/m/Y', strtotime($agendamento->getDataRealizacao())) 
-                                    : '<span class="text-muted">Pendente</span>' 
+                                    : '<span class="text-muted">Pendente</span>';
                                 ?>
                             </td>
                         </tr>

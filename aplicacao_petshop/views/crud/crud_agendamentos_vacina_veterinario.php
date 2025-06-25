@@ -1,57 +1,59 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$id_veterinario = $_SESSION['id_veterinario'];
+
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/AgendamentoVacina.php';
-
-// Simulação do ID do veterinário logado (você pode substituir por sessão depois)
-$id_veterinario_logado = 1;
-
-$agendamentoModel = new AgendamentoVacina();
-$agendamentos = $agendamentoModel->consultarAgendamentosPorVeterinario($id_veterinario_logado); // método que você vai criar
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
+;
+$agendamento = new AgendamentoVacina(0, 0, 0, "", 0);
+$controller_vacina = new AgendamentoVacinaController($agendamento);
+$agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($id_veterinario); 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Agendamentos - Veterinário</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="container mt-4">
+<div class="container my-5" style="height:80vh;">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Agendamentos de Vacinas</h2>
+        <div>
+            <a href="/estudos_php/aplicacao_petshop/views/relatorios/relatorio_agendamento_vacina_veterinario.php" target="_blank" class="btn btn-primary">Gerar Relatório PDF</a>
+        </div>
+    </div>
 
-    <h2>Meus Agendamentos de Vacinas</h2>
+    <?php if (!empty($agendamentos)): ?>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Pet</th>
+                        <th>Vacina</th>
+                        <th>Data Agendamento</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($agendamentos as $agendamento): ?>
+                        <tr>
+                            <td><?= $agendamento->obterNomePet() ?? 'N/A' ?></td>
+                            <td><?= $agendamento->obterNomeVacina() ?? 'N/A' ?></td>
+                            <td><?= date('d/m/Y', strtotime($agendamento->getDataAgendamento())) ?></td>
+                            <td><?= $agendamento->getStatusAgendamento()?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        
+    <?php else: ?>
+        <div class="alert alert-info text-center" role="alert">
+            Nenhum agendamento de vacina encontrado.
+        </div>
+    <?php endif; ?>
+</div>
 
-    <table class="table table-bordered table-striped mt-3">
-        <thead>
-            <tr>
-                <th>Pet</th>
-                <th>Vacina</th>
-                <th>Data Agendada</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($agendamentos as $a): ?>
-            <tr>
-                <td><?= $a['apelido_pet'] ?? 'N/A' ?></td>
-                <td><?= $a['nome_vacina'] ?? 'N/A' ?></td>
-                <td><?= $a['data_agendamento'] ?></td>
-                <td>
-                    <?= empty($a['data_realizacao']) ? '<span class="badge bg-warning">Pendente</span>' : '<span class="badge bg-success">Realizada</span>' ?>
-                </td>
-                <td>
-                    <!-- Botões de ação serão implementados depois -->
-                    <a href="../controllers/AgendamentoVacinaController.php?realizar=<?= $a['id_agendamento'] ?>" class="btn btn-success btn-sm">Realizar</a>
-                    <a href="../controllers/AgendamentoVacinaController.php?excluir=<?= $a['id_agendamento'] ?>" 
-                        class="btn btn-danger btn-sm"
-                        onclick="return confirm('Tem certeza que deseja excluir este agendamento?')">
-                        Excluir
-                    </a>
-
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-
-</body>
-</html>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/footer.php'; ?>

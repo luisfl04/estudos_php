@@ -23,9 +23,10 @@ class VeterinarioController {
     // Realiza login simples
     public function loginVeterinario(string $username, string $senha): void {
         $resposta = $this->veterinario->consultarDadosLogin($username, $senha);
-
-        if ($resposta === true) {
-            $_SESSION['nome_usuario'] = $username;
+        if ($resposta) {
+            $_SESSION['nome'] = $resposta['nome'];
+            $_SESSION['id_veterinario'] = $resposta['id_veterinario'];
+            $_SESSION['username_veterinario'] = $resposta['username'];
             header("Location: " . "/estudos_php/aplicacao_petshop/views/dashboards/dashboard_veterinario.php");
             exit;
         } else {

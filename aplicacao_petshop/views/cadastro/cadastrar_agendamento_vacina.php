@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$id_usuario = $_SESSION['id_usuario'];
+
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Vacina.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
@@ -23,6 +25,7 @@ $veterinarios = $veterinarioModel->consultarVeterinarioBanco();
 
     <form action="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php" method="POST">
         <input type="hidden" name="acao" value="cadastrar">
+        <input type="hidden" name="id_usuario_relacionado" value="<?=$id_usuario?>">
 
         <div class="mb-3">
             <label for="id_pet" class="form-label">Pet</label>

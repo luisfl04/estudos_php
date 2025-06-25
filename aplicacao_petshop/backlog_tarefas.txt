@@ -48,14 +48,14 @@
         3.3.1 -> Agendamento de vacinas -> 
             3.3.1.1 -> Formulário de agendamento -> Ok
             3.3.1.2 -> Controller que persistirá o agendamento -> Ok
-            3.3.1.3 -> Visualização do agendamento ou erro -> 
-        3.3.2 -> Visualização das vacinas agendadas -> 
-            3.3.2.1 -> Lógica de GET das vacinas agendadas para visualização -> 
-        3.3.3 -> Relatório PDF sobre as vacinas -> 
-            3.3.3.1 -> Botão que criará relatorio PDF com os dados das vacinas -> 
+            3.3.1.3 -> Visualização do agendamento ou erro -> OK
+        3.3.2 -> Visualização das vacinas agendadas -> Ok
+            3.3.2.1 -> Lógica de GET das vacinas agendadas para visualização -> Ok
+        3.3.3 -> Relatório PDF sobre as vacinas -> Ok
+            3.3.3.1 -> Botão que criará relatorio PDF com os dados das vacinas -> Ok
     3.4 -> Crud de vacinas(Veterinário) -> 
-        3.4.1 -> Visualização de vacinas agendadas -> 
-            3.4.1.1 -> Lógica de visualização de todas as vacinas agendadas relacionadas ao veterinário -> 
+        3.4.1 -> Visualização de vacinas agendadas -> OK 
+            3.4.1.1 -> Lógica de visualização de todas as vacinas agendadas relacionadas ao veterinário -> OK
         3.4.2 -> Realização das vacinas ->  
             3.4.2.1 -> Botão que atualizará o status da vacina para realizada -> 
             3.4.2.2 -> Lógica de atualização do status da vacina a partir do seu ID -> 

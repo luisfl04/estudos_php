@@ -89,6 +89,7 @@ CREATE TABLE vacina (
 /* tabela 'agendamento_vacina' */
 CREATE TABLE agendamento_vacina (
     id_agendamento_vacina INT NOT NULL AUTO_INCREMENT,
+    usuario_relacionado_id int not null,
     pet_id INT NOT NULL,
     veterinario_id INT NOT NULL,
     vacina_id INT NOT NULL,
@@ -100,3 +101,5 @@ CREATE TABLE agendamento_vacina (
     FOREIGN KEY (veterinario_id) REFERENCES veterinario(id_veterinario),
     FOREIGN KEY (vacina_id) REFERENCES vacina(id_vacina)
 );
+
+SELECT * FROM veterinario;

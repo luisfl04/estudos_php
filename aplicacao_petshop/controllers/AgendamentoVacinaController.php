@@ -1,9 +1,6 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/AgendamentoVacina.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Vacina.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
 
 class AgendamentoVacinaController {
@@ -18,22 +15,27 @@ class AgendamentoVacinaController {
 
     // Cadastrar agendamento no banco a partir dos dados do formulário
     public function cadastrarAgendamentoVacinaFromRequest(array $dados): void {
-        // Instanciar objetos relacionados com base nos IDs
-        $petModel = new Pet("", " ", "", 0, "");
-        $vacinaModel = new Vacina("", 0, "", 0.0);
-        $veterinarioModel = new Veterinario("", "", "", "", "", "", "", "");
-
         // Criar objeto de Agendamento
         $agendamento = new AgendamentoVacina(
             $dados['id_pet'],
             $dados['id_veterinario'],
             $dados['id_vacina'],
-            $dados['data_agendamento']
+            $dados['data_agendamento'],
+            $dados['id_usuario_relacionado']
         );
 
         // Persistir no banco
         $agendamento->cadastrarAgendamentoVacinaBanco();
     }
+
+    public function consultarAgendamentoVacinaUsuarioBanco(){
+        return $this->agendamento_vacina->consultarAgendamentoVacinaBancoUsuario();
+    }
+
+    public function consultarAgendamentoVacinaBancoVeterinario($id_veterinario){
+        return $this->agendamento_vacina->consultarAgendamentoVacinaBancoVeterinario($id_veterinario);
+    }
+
 
     // // Obter todos os agendamentos cadastrados
     // public function obterAgendamentosVacinas(): array {
