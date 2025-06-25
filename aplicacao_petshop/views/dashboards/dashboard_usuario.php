@@ -24,7 +24,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">Agendamentos de Vacina</h5>
                     <p class="card-text">Consulte, agende ou acompanhe a vacinação dos seus animais.</p>
-                    <a href="/estudos_php/aplicacao_petshop/views/crud_agendamentos.php" class="btn btn-success">Acessar</a>
+                    <a href="/estudos_php/aplicacao_petshop/views/crud/crud_agendamentos_vacina_cliente.php" class="btn btn-success">Acessar</a>
                 </div>
             </div>
         </div>

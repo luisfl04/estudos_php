@@ -1,6 +1,4 @@
 <?php
-     include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
-    
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -42,8 +40,8 @@
                             <td><?= htmlspecialchars($pet->getIdade()) ?></td>
                             <td><?= htmlspecialchars($pet->getSexo()) ?></td>
                             <td class="text-center">
-                                <a href="atualizar_pet.php?id=<?= $pet->getId() ?>" class="btn btn-sm btn-warning me-1">Editar</a>
-                                <a href="../controllers/PetController.php?remover=<?= $pet->getId() ?>" class="btn btn-sm btn-danger"
+                                <a href="/estudos_php/aplicacao_petshop/views/atualizacao/atualizar_pet.php?id_pet=<?= $pet->getId() ?>" class="btn btn-sm btn-warning me-1">Editar</a>
+                                <a href="/estudos_php/aplicacao_petshop/controllers/PetController.php?remover=<?= $pet->getId() ?>" class="btn btn-sm btn-danger"
                                    onclick="return confirm('Tem certeza que deseja remover este pet?')">Remover</a>
                             </td>
                         </tr>

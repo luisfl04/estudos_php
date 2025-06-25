@@ -42,7 +42,7 @@ class ControladorBanco implements BancoDeDados{
         return $resposta;
     }
 
-    public function autenticarUsuarioBanco($sql): bool {
+    public function autenticarValorBanco($sql): bool {
 
         // Executa a consulta SQL
         $resultado = $this->conexao_banco->query($sql);

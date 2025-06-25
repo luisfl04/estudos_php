@@ -86,7 +86,7 @@ class Pet {
 
     // Consulta geral
     public function consultarPetBanco(): array {
-        $comando_sql = "SELECT * FROM view_pet"; // ou 'pet' se não houver view
+        $comando_sql = "SELECT * FROM pet"; // ou 'pet' se não houver view
         return $this->controlador_banco->consultarValoresBanco($comando_sql);
     }
     public function listarPetsUsuario($username): array {
@@ -112,17 +112,17 @@ class Pet {
     public function atualizarPetBanco(int $id_pet): void {
         $comando_sql = "
             UPDATE pet
-            SET tipo_pet = '{$this->getTipoPet()}', raca = '{$this->getRaca()}', apelido = '{$this->getApelido()}',
+            SET tipo_pet_id = '{$this->getTipoPet()}', raca_pet = '{$this->getRaca()}', apelido = '{$this->getApelido()}',
                 idade = '{$this->getIdade()}', sexo = '{$this->getSexo()}'
-            WHERE id = '$id_pet';
+            WHERE id_pet = '$id_pet';
         ";
-        $this->controlador_banco->consultarValoresBanco($comando_sql);
+        $this->controlador_banco->autenticarValorBanco($comando_sql);
     }
 
     // Remoção
     public function removerPetBanco(int $id_pet): void {
-        $comando_sql = "DELETE FROM pet WHERE id = '$id_pet'";
-        $this->controlador_banco->consultarValoresBanco($comando_sql);
+        $comando_sql = "DELETE FROM pet WHERE id_pet = '$id_pet'";
+        $this->controlador_banco->autenticarValorBanco($comando_sql);
     }
 
     // Busca específica (opcional)
@@ -130,8 +130,18 @@ class Pet {
         $comando_sql = "SELECT * FROM pet WHERE usuario_id = '$id_usuario'";
         return $this->controlador_banco->consultarValoresBanco($comando_sql);
     }
+
+    public function buscarPorId($id_pet): ? array {
+        $comando_sql = "SELECT * FROM pet WHERE id_pet = $id_pet LIMIT 1;";
+        $resultado = $this->controlador_banco->consultarValoresBanco($comando_sql);
+
+        if (!empty($resultado)) {
+            return $resultado[0];
+        }
+
+        return null;
+    }
+
 }
-
-
 
 ?>

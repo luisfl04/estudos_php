@@ -34,16 +34,16 @@
             3.1.2.3 -> Redirecionamento para página correspondente de acordo com tipo de usuário ou mensagem de erro de autenticação -> OK 
     3.2 -> CRUD de Pets(Cliente) -> 
         3.2.1 -> Cadastro de pets -> 
-            3.2.1.1 -> Formulário -> 
-            3.2.1.2 -> Lógica no controller para persistência -> 
-            3.2.1.3 -> Confirmação do cadastro com a visualização do valor ou erro -> 
+            3.2.1.1 -> Formulário -> Ok
+            3.2.1.2 -> Lógica no controller para persistência -> Ok
+            3.2.1.3 -> Confirmação do cadastro com a visualização do valor ou erro -> Ok
         3.2.2 -> Atualização de pets -> 
-            3.2.2.1 -> Formulário que renderizará os dados do pet selectionado para Atualização
-            3.2.2.2 -> Lógica de persistência da atualização no controller  -> 
-            3.2.2.3 -> visualização do dado atualizado ou erro -> 
+            3.2.2.1 -> Formulário que renderizará os dados do pet selectionado para Atualização -> Ok
+            3.2.2.2 -> Lógica de persistência da atualização no controller  -> Ok
+            3.2.2.3 -> visualização do dado atualizado ou erro -> Ok
         3.2.3 -> Remoção de pets -> 
-            3.2.3.1 -> Controller que persistirá a remoção a partir do ID do pet -> 
-            3.2.3.2 -> Confirmação do pet removido -> 
+            3.2.3.1 -> Controller que persistirá a remoção a partir do ID do pet -> Ok
+            3.2.3.2 -> Confirmação do pet removido -> Ok
     3.3 -> Crud de vacinas(Cliente) -> 
         3.3.1 -> Agendamento de vacinas -> 
             3.3.1.1 -> Formulário de agendamento ->

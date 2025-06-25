@@ -1,40 +1,44 @@
 <?php
-require_once 'banco_de_dados/ControladorBanco.php';
-require_once 'models/Pet.php';
-require_once 'models/Veterinario.php';
-require_once 'models/Vacina.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/AgendamentoVacinaCollection.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
 
 class AgendamentoVacina {
     private int $id_agendamento_vacina;
-    private Pet $pet;
-    private Veterinario $veterinario;
-    private Vacina $vacina;
+    private int $pet_id;
+    private int $veterinario_id;
+    private int $vacina_id;
     private string $data_agendamento;
     private string $data_realizacao;
 
     private ControladorBanco $controlador_banco;
+    private AgendamentoVacinaCollection $agendamento_vacina_collection;
 
-    public function __construct(Pet $pet, Veterinario $veterinario, Vacina $vacina, string $data_agendamento) {
-        $this->pet = $pet;
-        $this->veterinario = $veterinario;
-        $this->vacina = $vacina;
+
+    public function __construct(int $pet_id, int $veterinario_id, int $vacina_id, string $data_agendamento) {
+        $this->pet = $pet_id;
+        $this->veterinario = $veterinario_id;
+        $this->vacina = $vacina_id;
         $this->data_agendamento = $data_agendamento;
         $this->data_realizacao = "";
-
+        $this-> agendamento_vacina_collection = new AgendamentoVacinaCollection();
         $this->controlador_banco = new ControladorBanco();
     }
 
     // Getters
-    public function getPet(): Pet {
-        return $this->pet;
+    public function getId(): int{
+        return $this->id_agendamento_vacina;
     }
 
-    public function getVeterinario(): Veterinario {
-        return $this->veterinario;
+    public function getPetId(): int{
+        return $this->pet_id;
     }
 
-    public function getVacina(): Vacina {
-        return $this->vacina;
+    public function getVeterinarioId(): int {
+        return $this->veterinario_id;
+    }
+
+    public function getVacinaId(): int {
+        return $this->vacina_id;
     }
 
     public function getDataAgendamento(): string {
@@ -46,6 +50,10 @@ class AgendamentoVacina {
     }
 
     // Setters
+    public function setId($novo_id): void{
+        $this->id_agendamento_vacina = $novo_id;
+    }
+
     public function setDataAgendamento(string $nova_data): void {
         $this->data_agendamento = $nova_data;
     }
@@ -61,21 +69,22 @@ class AgendamentoVacina {
     // Métodos de banco
     public function cadastrarAgendamentoVacinaBanco(): void {
         $sql = "
-            INSERT INTO agendamento_vacina (pet_id, veterinario_id, vacina_id, data_agendamento, data_realizacao)
+            INSERT INTO agendamento_vacina (pet_id, veterinario_id, vacina_id, data_agendamento)
             VALUES (
-                {$this->pet->getId()}, 
-                {$this->veterinario->getId()}, 
-                {$this->vacina->getId()}, 
-                '{$this->getDataAgendamento()}', 
-                '{$this->getDataRealizacao()}'
+                {$this->getPetId()}, 
+                {$this->getVeterinarioId()}, 
+                {$this->getVacinaId()}, 
+                '{$this->getDataAgendamento()}'
             );
         ";
         $this->controlador_banco->cadastrarDados($sql);
     }
 
     public function consultarAgendamentoVacinaBanco(): array {
-        $sql = "SELECT * FROM view_agendamento_vacina"; // ou tabela diretamente
-        return $this->controlador_banco->consultarValoresBanco($sql);
+        $sql = "SELECT * FROM view_agendamento_vacina";
+        $valores_banco = $this->controlador_banco->consultarValoresBanco($sql);
+        $objetos =  $this->criarCollection($valores_banco);
+        return $objetos;
     }
 
     public function consultarAgendamentosPorVeterinario(int $id_vet): array {
@@ -103,5 +112,28 @@ class AgendamentoVacina {
         $sql = "DELETE FROM agendamento_vacina WHERE id_agendamento = {$id_agendamento}";
         $this->controlador_banco->cadastrarDados($sql);
     }
+
+    public function obterNomePet(): string {
+        $pet = new Pet("", "", "", 0, "");
+        $dados_pet = $pet->buscarPorId($this->pet_id);
+        return $dados_pet['apelido'] ?? 'Pet não encontrado';
+    }
+
+    public function obterNomeVacina(): string {
+        $vacina = new Vacina("", 0, "", 0.0);
+        $dados_vacina = $vacina->buscarPorId($this->vacina_id);
+        return $dados_vacina['nome'] ?? 'Vacina não encontrada';
+    }
+
+    public function obterNomeVeterinario(): string {
+        $veterinario = new Veterinario("", "", "","", "", "", "", "");
+        $dados_veterinario = $veterinario->buscarPorId($this->veterinario_id);
+        return $dados_veterinario['nome'] ?? 'Veterinário não encontrado';
+    }
+
+    public function criarCollection($valores_banco) : array {
+        return $this->agendamento_vacina_collection->criarCollection($valores_banco);
+    }
+
 
 }

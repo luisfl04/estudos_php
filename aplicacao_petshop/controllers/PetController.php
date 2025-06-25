@@ -50,17 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_pets.php");
         exit;
     }
+    else if (isset($_POST['acao']) && $_POST['acao'] === 'atualizar') {
+        $id_pet = $_POST['id_pet'];
+        $tipo_pet = $_POST['tipo_pet'];
+        $raca = $_POST['raca'];
+        $apelido = $_POST['apelido'];
+        $idade = $_POST['idade'];
+        $sexo = $_POST['sexo'];
 
+        $pet = new Pet($tipo_pet ,$raca, $apelido, $idade, $sexo);
+        $pet->atualizarPetBanco($id_pet);
+        header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_pets.php");
+        exit;
+    }
+
+}else if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remover'])) {
+    $pet = new Pet("" ,"", "", 0, "");
+    $pet->removerPetBanco($_GET['remover']);
+    header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_pets.php");
 }
-
-// if (isset($_POST['acao']) && $_POST['acao'] === 'atualizar') {
-//     $petModel->atualizar($_POST['id'], $_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
-//     header("Location: ../views/crud_pets.php");
-// }
-// if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remover'])) {
-//     $petModel->remover($_GET['remover']);
-//     header("Location: ../views/crud_pets.php");
-// }
 
 
 ?>

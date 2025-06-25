@@ -1,6 +1,6 @@
 <?php
-require_once 'banco_de_dados/ControladorBanco.php';
-require_once 'colecoes/VacinaCollection.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/VacinaCollection.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Vacina.php';
 
 class Vacina {
     private int $id_vacina;
@@ -24,7 +24,7 @@ class Vacina {
 
     // Getters
     public function getId(): int{
-        return $this->id;
+        return $this->id_vacina;
     }
 
     public function getNome(): string {
@@ -44,6 +44,10 @@ class Vacina {
     }
 
     // Setters
+    public function setId($novo_id){
+        $this->id_vacina = $novo_id;
+    }
+
     public function setDescricao(string $nova_descricao): void {
         $this->descricao = $nova_descricao;
     }
@@ -62,7 +66,19 @@ class Vacina {
     }
 
     public function consultarVacinaBanco(): array {
-        $sql = "SELECT * FROM view_vacina"; // ou 'vacina' se não houver view
+        $sql = "SELECT * FROM vacina";
         return $this->controlador_banco->consultarValoresBanco($sql);
     }
+
+    public function buscarPorId($id_vacina): ? array {
+        $comando_sql = "SELECT * FROM vacina WHERE id_vacina = $id_vacina LIMIT 1;";
+        $resultado = $this->controlador_banco->consultarValoresBanco($comando_sql);
+
+        if (!empty($resultado)) {
+            return $resultado[0];
+        }
+
+        return null;
+    }
+
 }

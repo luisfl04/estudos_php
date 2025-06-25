@@ -87,7 +87,7 @@ class Veterinario {
 
     // Consultar do banco
     public function consultarVeterinarioBanco(): array {
-        $comando_sql = "SELECT * FROM view_veterinario";
+        $comando_sql = "SELECT * FROM veterinario";
         $resposta = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resposta;
     }
@@ -96,15 +96,27 @@ class Veterinario {
         return $this->veterinario_collection->criarCollection($valores_retorno_banco);
     }
 
-    public function consultarDadosLogin($username, $senha) : bool{
+    public function consultarDadosLogin($username, $senha) : array | null{
         $comando_sql = "
             SELECT * FROM veterinario
             WHERE username = '$username' AND senha = '$senha'
             LIMIT 1;
         ";
 
-        $resultado = $this->controlador_banco->autenticarUsuarioBanco($comando_sql);
+        $resultado = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resultado; // retorna true se encontrou, false caso contrário
     }
+
+    public function buscarPorId($id_veterinario): ? array {
+        $comando_sql = "SELECT * FROM veterinario WHERE id_veterinario = $id_veterinario LIMIT 1;";
+        $resultado = $this->controlador_banco->consultarValoresBanco($comando_sql);
+
+        if (!empty($resultado)) {
+            return $resultado[0];
+        }
+
+        return null;
+    }
+
 
 }

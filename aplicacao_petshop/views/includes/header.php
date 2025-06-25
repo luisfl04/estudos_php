@@ -23,7 +23,7 @@ $nome_usuario = $_SESSION['nome'] ?? 'Usuário';
 
             <div class="d-flex align-items-center mb-2 mb-md-0">
                 <img src="../../public/img/logo_vacina.png" alt="Logo Vacina" style="height:40px; width:auto;"/>
-                <span class="ms-2 fs-5 fw-semibold">Sistema de Vacinação Petshop</span>
+                <span class="ms-2 fs-5 fw-semibold"><a style="color:white; text-decoration: none;" href="/estudos_php/aplicacao_petshop/views/dashboards/dashboard_usuario.php">Sistema de Vacinação Petshop</a></span>
             </div>
 
             <div class="d-flex align-items-center gap-3">

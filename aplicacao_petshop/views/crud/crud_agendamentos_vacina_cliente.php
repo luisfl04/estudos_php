@@ -1,52 +1,56 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/AgendamentoVacina.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Vacina.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
-
-$agendamento = new AgendamentoVacina();
-$agendamentos = $agendamento->consultarAgendamentoVacinaBanco(); // Retorna array associativo com dados das tabelas relacionadas
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
+;
+$agendamento = new AgendamentoVacina(0, 0, 0, "");
+$agendamentos = $agendamento->consultarAgendamentoVacinaBanco(); 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Agendamentos de Vacinas</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="container mt-4">
-    <h2 class="mb-4">Meus Agendamentos de Vacinas</h2>
-
-    <div class="mb-3">
-        <a href="form_agendar_vacina.php" class="btn btn-success">Agendar Nova Vacina</a>   
-        <a href="relatorio_vacinas.php" class="btn btn-primary" target="_blank">Gerar Relatório PDF</a>
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Meus Agendamentos de Vacinas</h2>
+        <div>
+            <a href="/estudos_php/aplicacao_petshop/views/cadastro/cadastrar_agendamento_vacina.php" class="btn btn-success me-2">Agendar Nova Vacina</a>
+            <a href="relatorio_vacinas.php" target="_blank" class="btn btn-primary">Gerar Relatório PDF</a>
+        </div>
     </div>
 
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Pet</th>
-                <th>Vacina</th>
-                <th>Veterinário</th>
-                <th>Data Agendamento</th>
-                <th>Data Realização</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($agendamentos as $registro): ?>
-                <tr>
-                    <td><?= $registro['apelido_pet'] ?? 'N/A' ?></td>
-                    <td><?= $registro['nome_vacina'] ?? 'N/A' ?></td>
-                    <td><?= $registro['nome_veterinario'] ?? 'N/A' ?></td>
-                    <td><?= $registro['data_agendamento'] ?></td>
-                    <td><?= $registro['data_realizacao'] ?? '-' ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <?php if (!empty($agendamentos)): ?>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Pet</th>
+                        <th>Vacina</th>
+                        <th>Veterinário</th>
+                        <th>Data Agendamento</th>
+                        <th>Data Realização</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($agendamentos as $agendamento): ?>
+                        <tr>
+                            <td><?= $agendamento->obterNomePet() ?? 'N/A' ?></td>
+                            <td><?= $agendamento->obterNomeVacina() ?? 'N/A' ?></td>
+                            <td><?= $agendamento->ObterNomeVeterinario() ?? 'N/A' ?></td>
+                            <td><?= date('d/m/Y', strtotime($agendamento->getDataAgendamento())) ?></td>
+                            <td>
+                                <?= $registro['data_realizacao'] 
+                                    ? date('d/m/Y', strtotime($agendamento->getDataRealizacao())) 
+                                    : '<span class="text-muted">Pendente</span>' 
+                                ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="alert alert-info text-center" role="alert">
+            Nenhum agendamento de vacina encontrado.
+        </div>
+    <?php endif; ?>
+</div>
 
-
-</body>
-</html>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/footer.php'; ?>
