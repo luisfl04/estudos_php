@@ -78,7 +78,7 @@ class Pet {
     // Inserção no banco
     public function cadastrarPetBanco(int $id_usuario): void {
         $comando_sql = "
-            INSERT INTO pet (usuario_id, tipo_pet, raca, apelido, idade, sexo)
+            INSERT INTO pet (usuario_dono_id, tipo_pet_id, raca_pet, apelido, idade, sexo)
             VALUES ('$id_usuario', '{$this->getTipoPet()}', '{$this->getRaca()}', '{$this->getApelido()}', '{$this->getIdade()}', '{$this->getSexo()}');
         ";
         $this->controlador_banco->cadastrarDados($comando_sql);

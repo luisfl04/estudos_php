@@ -11,8 +11,8 @@ class PetCollection extends CollectionBase
 
         foreach ($valores_retorno_banco as $linha) {
             $pet = new Pet(
-                $linha['tipo_pet'],
-                $linha['raca'],
+                $linha['tipo_pet_id'],
+                $linha['raca_pet'],
                 $linha['apelido'],
                 $linha['idade'],
                 $linha['sexo'],

@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$nome_usuario = $_SESSION['nome_usuario'] ?? 'Usuário';
+$nome_usuario = $_SESSION['nome'] ?? 'Usuário';
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,6 @@ $nome_usuario = $_SESSION['nome_usuario'] ?? 'Usuário';
     <title>Sistema Vacinas</title>
     <?php   
         include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/cdn.php';
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
     ?>
 </head>
 <body>

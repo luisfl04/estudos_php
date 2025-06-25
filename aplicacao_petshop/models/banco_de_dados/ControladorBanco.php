@@ -35,6 +35,10 @@ class ControladorBanco implements BancoDeDados{
         // Fazendo consulta no banco:
         $this->consulta_banco = $this->conexao_banco->query($consulta_sql);
         $resposta = $this->obterDados($this->consulta_banco);
+        if($resposta === null){
+            $array_nulo = [];
+            return $array_nulo;
+        }
         return $resposta;
     }
 
@@ -45,26 +49,17 @@ class ControladorBanco implements BancoDeDados{
 
         // Verifica se encontrou alguma linha
         if ($resultado && $resultado->num_rows > 0) {
-            $this->desconectarBanco();
             return true;
         } else {
-            $this->desconectarBanco();
             return false;
         }
         
     }
 
-    public function obterDados($valores_banco): array{
-        
-        if(!empty($valores_banco)){
-            $array_nulo = [];
-            return $array_nulo;
-        }
-        
+    public function obterDados($valores_banco): array | null{     
         while($valor = $valores_banco->fetch_array(MYSQLI_ASSOC)){
             $valores[] = $valor;
         }
-
         return $valores;
     }
 

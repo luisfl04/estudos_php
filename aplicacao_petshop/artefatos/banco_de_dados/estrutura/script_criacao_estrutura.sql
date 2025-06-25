@@ -60,33 +60,19 @@ CREATE TABLE tipo_pet (
     PRIMARY KEY (id_tipo_pet)
 );
 
-/* tabela 'raca_pet' */
-CREATE TABLE raca_pet (
-    id_raca_pet INT NOT NULL AUTO_INCREMENT,
-    tipo_pet_id INT NOT NULL,
-
-    nome_raca VARCHAR(100) NOT NULL,
-    descricao_raca VARCHAR(255) NOT NULL,
-
-    PRIMARY KEY (id_raca_pet),
-    FOREIGN KEY (tipo_pet_id) REFERENCES tipo_pet(id_tipo_pet)
-        ON UPDATE CASCADE
-        ON DELETE RESTRICT
-);
 
 /* tabela 'pet' */
 CREATE TABLE pet (
     id_pet INT NOT NULL AUTO_INCREMENT,
     usuario_dono_id INT NOT NULL,
     tipo_pet_id INT NOT NULL,
-    raca_pet_id INT NOT NULL,
+    raca_pet_ VARCHAR(50) NOT NULL,
     apelido VARCHAR(50) NOT NULL,
     idade TINYINT UNSIGNED NOT NULL,
     sexo ENUM('M', 'F', 'Outro') NOT NULL,
     PRIMARY KEY (id_pet),
     FOREIGN KEY (usuario_dono_id) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (tipo_pet_id) REFERENCES tipo_pet(id_tipo_pet),
-    FOREIGN KEY (raca_pet_id) REFERENCES raca_pet(id_raca_pet)
+    FOREIGN KEY (tipo_pet_id) REFERENCES tipo_pet(id_tipo_pet)
 );
 
 /* tabela 'vacina': */

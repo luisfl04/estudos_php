@@ -1,6 +1,10 @@
 <?php
-    session_start();
-    $username = $_SESSION['nome_usuario'];
+     include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
+    
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $username = $_SESSION['username'];
     include_once '../includes/header.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
     $petModel = new Pet("", "", "", 0, "");
@@ -8,13 +12,12 @@
 ?>
 
 <div class="container my-5">
-    <!-- Título -->
+
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold text-primary">Gerenciamento de Pets</h2>
-        <a href="cadastrar_pet.php" class="btn btn-success">+ Cadastrar Novo Pet</a>
+        <a href="../cadastro/cadastrar_pet.php" class="btn btn-success">+ Cadastrar Novo Pet</a>
     </div>
 
-    <!-- Tabela de pets -->
     <div class="table-responsive">
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
@@ -32,7 +35,7 @@
                 <?php if (!empty($pets)): ?>
                     <?php foreach ($pets as $pet): ?>
                         <tr>
-                            <td><?= $pet['id'] ?></td>
+                            <td><?= $pet->getId() ?></td>
                             <td><?= htmlspecialchars($pet->getTipoPet()) ?></td>
                             <td><?= htmlspecialchars($pet->getRaca()) ?></td>
                             <td><?= htmlspecialchars($pet->getApelido()) ?></td>

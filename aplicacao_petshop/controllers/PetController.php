@@ -1,68 +1,66 @@
 <?php
 
+
 // Incluindo classe modelo:
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
 
-class PetController{
-    // Intância da classe de banco de dados:
-    protected $model_pet;
 
-    // Iniciando instância
-    public function __construct(){
-        $this->model_pet = new Pet();
+class PetController {
+    protected Pet $pet;
+
+    // Construtor
+    public function __construct(Pet $pet) {
+        $this->pet = $pet;
     }
 
-    // Método que controlará o fluxo
-    public function controlarRequisicao($info){
-        if ($info === 'obterPet'){
-            $this->obterPet();
-        }
-        else{
-            return "Método de requisição não permitido!";
-        }
+    // Cadastrar pet no banco
+    public function cadastrarPetBanco(int $id_usuario): void {
+        $this->pet->cadastrarPetBanco($id_usuario);
     }
 
-    public function cadastrarPet(){
-        // Obtendo valores da requisição:
-        $nome_do_pet = $_POST['nome_do_pet'];
-        $apelido = $_POST['apelido'];
-        $tipo_do_pet = $_POST['tipo_do_pet'];
-        $dono_do_pet = $_POST['dono_do_pet'];
-
-        // Criando objeto pet:
-        $this->model_pet->criarPet( $nome_do_pet, $apelido, $tipo_do_pet, $dono_do_pet);
-
-        // Cadastrando o objeto no banco de dados:
-        $resposta_cadastro = $this->model_pet->cadastrarPetBanco();
-
-        echo $resposta_cadastro;
+    // Obter pets do usuário autenticado
+    public function obterPetsUsuario(string $username): array {
+        $resposta = $this->pet->listarPetsUsuario($username);
+        return $this->pet->criarCollection($resposta);
     }
 
-    public function obterPet(){
-        $pets =  $this->model_pet->consultarPet();
-        $collection_pets = $this->model_pet->criarCollection($pets);
-        return $collection_pets;
+    // Obter todos os pets (opcional)
+    public function obterTodosPets(): array {
+        $resposta = $this->pet->consultarPetBanco();
+        return $this->pet->criarCollection($resposta);
     }
 
+    // Atualizar pet
+    public function atualizarPetBanco(int $id_pet): void {
+        $this->pet->atualizarPetBanco($id_pet);
+    }
 
+    // Remover pet
+    public function removerPetBanco(int $id_pet): void {
+        $this->pet->removerPetBanco($id_pet);
+    }
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['acao']) && $_POST['acao'] === 'cadastrar') {
-        $petModel->cadastrar($_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
-        header("Location: ../views/crud_pets.php");
+        $pet = new Pet($_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
+        $pet->cadastrarPetBanco($_POST['id_usuario']);
+        header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_pets.php");
+        exit;
     }
 
-    if (isset($_POST['acao']) && $_POST['acao'] === 'atualizar') {
-        $petModel->atualizar($_POST['id'], $_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
-        header("Location: ../views/crud_pets.php");
-    }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remover'])) {
-    $petModel->remover($_GET['remover']);
-    header("Location: ../views/crud_pets.php");
-}
+// if (isset($_POST['acao']) && $_POST['acao'] === 'atualizar') {
+//     $petModel->atualizar($_POST['id'], $_POST['tipo_pet'], $_POST['raca'], $_POST['apelido'], $_POST['idade'], $_POST['sexo']);
+//     header("Location: ../views/crud_pets.php");
+// }
+// if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['remover'])) {
+//     $petModel->remover($_GET['remover']);
+//     header("Location: ../views/crud_pets.php");
+// }
 
 
 ?>

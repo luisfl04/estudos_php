@@ -88,26 +88,27 @@ class Usuario {
         $this->controlador_banco->cadastrarDados($comando_sql);
     }
 
-    public function consultarUsuarioBanco() : array{
-        $comando_sql = "select * from view_usuario";
+    public function consultarUsuarioBanco($username) : array{
+        $comando_sql = "select * from usuario
+            where username = '{$username}' limit 1;
+        ";
         $resposta = $this->controlador_banco->consultarValoresBanco($comando_sql);
         return $resposta;
     }
 
-    public function criarCollection($valores_retorno_banco) : array{
+    public function criarCollection($valores_retorno_banco) : array | null{
         return $this->usuario_collection->criarCollection($valores_retorno_banco);
     }
 
-    public function consultarDadosLogin($username, $senha) : bool{
+    public function consultarDadosLogin($username, $senha) : array | null{
         $comando_sql = "
             SELECT * FROM usuario
             WHERE username = '$username' AND senha = '$senha'
             LIMIT 1;
         ";
+        $resultado = $this->controlador_banco->consultarValoresBanco($comando_sql);
 
-        $resultado = $this->controlador_banco->autenticarUsuarioBanco($comando_sql);
-
-        return !empty($resultado); // retorna true se encontrou, false caso contrário
+        return !empty($resultado) ? $resultado[0] : null; // retorna true se encontrou, false caso contrário
     }
 
 
