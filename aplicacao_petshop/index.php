@@ -53,10 +53,15 @@
                         <option value="veterinario">Veterinário</option>
                     </select>
                 </div>
+                <div class="d-flex flex-column justify-content-center"> 
+                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    <a class="text-center mt-4 " href="views/cadastro/cadastro_usuario.php">Não possui conta? cadastre-se</a>
+                </div>
 
-                <button type="submit" class="btn btn-primary w-100">Entrar</button>
             </form>
+        
         </div>
+    
     </div>
 
 </body>
