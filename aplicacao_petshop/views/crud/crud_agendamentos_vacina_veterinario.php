@@ -17,7 +17,7 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
 
 <div class="container my-5" style="height:80vh;">
     
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
         <h2 class="fw-bold">Agendamentos de Vacinas</h2>
         <div>
             <a href="/estudos_php/aplicacao_petshop/views/dashboards/dashboard_veterinario.php"  class="btn btn-secondary">Voltar</a>
@@ -47,10 +47,16 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
                             <td>
                                 <?php if($agendamento->getStatusAgendamento() === 'realizado'): ?>
                                     <a class="btn btn-success disabled btn-sm me-1" >Realizar Vacina</a>
-                                    <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">Excluir Vacina</a>
-                                <?php else: ?>
+                                    <a onclick="return confirm('Tem certeza que deseja exluir esta vacina?')"
+                                        href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">
+                                        Excluir Vacina
+                                    </a>
+                                    <?php else: ?>
                                     <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?realizar=<?=$agendamento->getId() ?>" class="btn btn-success btn-sm me-1">Realizar Vacina</a>
-                                    <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">Excluir Vacina</a>
+                                    <a onclick="return confirm('Tem certeza que deseja exluir esta vacina?')"
+                                        href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">
+                                        Excluir Vacina
+                                    </a>
                                 <?php endif ?>
                             </td>
                         </tr>
