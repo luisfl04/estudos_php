@@ -18,6 +18,7 @@ class AgendamentoVacinaCollection extends CollectionBase
                 $linha['usuario_relacionado_id'],
             );
             $agendamento_vacina->setId($linha['id_agendamento_vacina']);
+            $agendamento_vacina->setStatusAgendamento($linha['status_agendamento']);
             $colecao[] = $agendamento_vacina;
         }
 

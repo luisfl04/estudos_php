@@ -34,6 +34,7 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
                         <th>Vacina</th>
                         <th>Data Agendamento</th>
                         <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,13 +43,21 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
                             <td><?= $agendamento->obterNomePet() ?? 'N/A' ?></td>
                             <td><?= $agendamento->obterNomeVacina() ?? 'N/A' ?></td>
                             <td><?= date('d/m/Y', strtotime($agendamento->getDataAgendamento())) ?></td>
-                            <td><?= $agendamento->getStatusAgendamento()?></td>
+                            <td><?= $agendamento->getStatusAgendamento() ?></td>
+                            <td>
+                                <?php if($agendamento->getStatusAgendamento() === 'realizado'): ?>
+                                    <a class="btn btn-success disabled btn-sm me-1" >Realizar Vacina</a>
+                                    <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">Excluir Vacina</a>
+                                <?php else: ?>
+                                    <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?realizar=<?=$agendamento->getId() ?>" class="btn btn-success btn-sm me-1">Realizar Vacina</a>
+                                    <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">Excluir Vacina</a>
+                                <?php endif ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-        
     <?php else: ?>
         <div class="alert alert-info text-center" role="alert">
             Nenhum agendamento de vacina encontrado.

@@ -36,13 +36,15 @@ class AgendamentoVacinaController {
         return $this->agendamento_vacina->consultarAgendamentoVacinaBancoVeterinario($id_veterinario);
     }
 
+    public function realizarAgendamentoVacina($id_agendamento){
+        $this->agendamento_vacina->realizarAgendamentoVacina($id_agendamento);
+    }
 
-    // // Obter todos os agendamentos cadastrados
-    // public function obterAgendamentosVacinas(): array {
-    //     $agendamento = new AgendamentoVacina(null, null, null, '');
-    //     $valores = $agendamento->consultarAgendamentoVacinaBanco();
-    //     return $agendamento->criarCollection($valores);
-    // }
+    public function excluirAgendamentoVacina($id_agendamento){
+        $this->agendamento_vacina->excluirAgendamentoVacina($id_agendamento);       
+    }
+
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['acao'] === 'cadastrar') {
@@ -50,31 +52,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['acao'] === 'cadastrar') {
     $controller->cadastrarAgendamentoVacinaFromRequest($_POST);
     header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_agendamentos_vacina_cliente.php");
     exit;
+}else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if(isset($_GET['realizar'])){
+        $id_agendamento = intval($_GET['realizar']);
+        $modelo = new AgendamentoVacina(0,0,0,"", 0);
+        $controller_agendamento = new AgendamentoVacinaController($modelo);
+        $controller_agendamento->realizarAgendamentoVacina($id_agendamento);
+        
+        header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_agendamentos_vacina_veterinario.php");
+        exit;
+    }
+    else if(isset($_GET['excluir'])){
+        $id_agendamento = intval($_GET['excluir']);
+        $modelo = new AgendamentoVacina(0,0,0,"", 0);
+        $controller_agendamento = new AgendamentoVacinaController($modelo);
+        $controller_agendamento->excluirAgendamentoVacina($id_agendamento);
+        header("Location: /estudos_php/aplicacao_petshop/views/crud/crud_agendamentos_vacina_veterinario.php");
+        exit;
+    }
 }
-
-
-// // Lógica chamada via GET para realizar vacina
-// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//     if(isset($_GET['realizar'])){
-    
-//         $id = intval($_GET['realizar']);
-    
-//         $modelo = new AgendamentoVacina();
-//         $modelo->realizarVacina($id);
-    
-//         header("Location: ../views/crud_agendamentos_veterinario.php");
-//         exit;
-//     }
-//     else if(isset($_GET['excluir'])){
-//         $id = intval($_GET['excluir']);
-
-//         $modelo = new AgendamentoVacina();
-//         $modelo->excluirAgendamentoVacina($id);
-
-//         header("Location: ../views/crud_agendamentos_veterinario.php");
-//         exit;
-//     }
-// }
-
 
 ?>

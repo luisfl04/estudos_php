@@ -56,12 +56,12 @@
     3.4 -> Crud de vacinas(Veterinário) -> 
         3.4.1 -> Visualização de vacinas agendadas -> OK 
             3.4.1.1 -> Lógica de visualização de todas as vacinas agendadas relacionadas ao veterinário -> OK
-        3.4.2 -> Realização das vacinas ->  
-            3.4.2.1 -> Botão que atualizará o status da vacina para realizada -> 
-            3.4.2.2 -> Lógica de atualização do status da vacina a partir do seu ID -> 
-        3.4.3 -> Exclusão de vacinas agendadas ->
-            3.4.3.1 -> Botão de exclusão -> 
-            3.4.2.2 -> Lógica de exclusão a partir do ID de agendamento -> 
+        3.4.2 -> Realização das vacinas -> Ok  
+            3.4.2.1 -> Botão que atualizará o status da vacina para realizada -> Ok
+            3.4.2.2 -> Lógica de atualização do status da vacina a partir do seu ID -> Ok
+        3.4.3 -> Exclusão de vacinas agendadas -> Ok
+            3.4.3.1 -> Botão de exclusão -> Ok
+            3.4.2.2 -> Lógica de exclusão a partir do ID de agendamento -> Ok
     3.5 -> CRUD Relatório de vacinas(Veterinário -> Opcional) -> 
         3.5.1 -> Cadastro de relatório -> 
             3.5.1.1 -> Formulário de cadastro
@@ -77,6 +77,3 @@
 
 4 -> Documentação:
     4.1 README.md no github
-
-5 -> Relatório da aplicação em PDF
-    -> Criar botão com lógica de gerar um pdf com os dados requisitados -> 

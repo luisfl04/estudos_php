@@ -79,13 +79,8 @@ class AgendamentoVacina {
         $this->data_realizacao = $data_realizacao;
     }
 
-    public function setStatusAgendamento(): void {
-        if($this->status_agendamento === 'agendado'){
-            $this->status_agendamento = 'realizado';
-        }
-        else{
-            $this->status_agendamento = 'agendado';
-        }
+    public function setStatusAgendamento($novo_status): void {
+        $this->status_agendamento = $novo_status;
     }
 
     // Métodos de banco
@@ -126,15 +121,20 @@ class AgendamentoVacina {
         return $objetos;
     }
 
-    public function realizarVacina(int $id_agendamento): void {
+    public function realizarAgendamentoVacina(int $id_agendamento): void {
         $data_realizacao = date('Y-m-d');
-        $sql = "UPDATE agendamento_vacina SET data_realizacao = '{$data_realizacao}' WHERE id_agendamento = {$id_agendamento}";
-        $this->controlador_banco->consultarValoresBanco($sql);    
+        $sql = " 
+            UPDATE agendamento_vacina 
+            SET data_realizacao = '{$data_realizacao}', status_agendamento='realizado'
+            WHERE id_agendamento_vacina = {$id_agendamento}";
+            $this->controlador_banco->autenticarValorBanco($sql);    
     }
 
     public function excluirAgendamentoVacina(int $id_agendamento): void {
-        $sql = "DELETE FROM agendamento_vacina WHERE id_agendamento = {$id_agendamento}";
-        $this->controlador_banco->cadastrarDados($sql);
+        $sql = "
+        DELETE FROM agendamento_vacina 
+        WHERE id_agendamento_vacina = {$id_agendamento}";
+        $this->controlador_banco->autenticarValorBanco($sql);
     }
 
     public function obterNomePet(): string {
