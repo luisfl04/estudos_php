@@ -36,7 +36,7 @@ $agendamentos = $agendamento->consultarAgendamentoVacinaBanco();
                             <td><?= $agendamento->ObterNomeVeterinario() ?? 'N/A' ?></td>
                             <td><?= date('d/m/Y', strtotime($agendamento->getDataAgendamento())) ?></td>
                             <td>
-                                <?= $registro['data_realizacao'] 
+                                <?= $agendamento->getDataRealizacao() 
                                     ? date('d/m/Y', strtotime($agendamento->getDataRealizacao())) 
                                     : '<span class="text-muted">Pendente</span>' 
                                 ?>

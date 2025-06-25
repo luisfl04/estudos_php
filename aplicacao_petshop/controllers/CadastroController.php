@@ -16,7 +16,7 @@ class CadastroController {
             // Verificando se todos os campos esperados foram enviados
             $campos_esperados = [
                 'username', 'senha', 'nome', 'telefone', 'cpf', 'data_nascimento', 'sexo',
-                'rua', 'bairro', 'estado', 'complemento'
+                'rua', 'bairro', 'estado'
             ];
 
             foreach ($campos_esperados as $campo) {

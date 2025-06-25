@@ -1,6 +1,9 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/collection/AgendamentoVacinaCollection.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/banco_de_dados/ControladorBanco.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Veterinario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Vacina.php';
 
 class AgendamentoVacina {
     private int $id_agendamento_vacina;
@@ -63,10 +66,6 @@ class AgendamentoVacina {
         $this->data_realizacao = $data_realizacao;
     }
 
-    public function setVeterinario(Veterinario $veterinario_novo): void {
-        $this->veterinario = $veterinario_novo;
-    }
-
     // Métodos de banco
     public function cadastrarAgendamentoVacinaBanco(): void {
         $sql = "
@@ -124,7 +123,7 @@ class AgendamentoVacina {
     public function obterNomeVacina(): string {
         $vacina = new Vacina("", 0, "", 0.0);
         $dados_vacina = $vacina->buscarPorId($this->vacina_id);
-        return $dados_vacina['nome'] ?? 'Vacina não encontrada';
+        return $dados_vacina['nome_tipo'] ?? 'Vacina não encontrada';
     }
 
     public function obterNomeVeterinario(): string {

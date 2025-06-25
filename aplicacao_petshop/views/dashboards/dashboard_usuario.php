@@ -2,7 +2,7 @@
     include_once $_SERVER['DOCUMENT_ROOT']  . '/estudos_php/aplicacao_petshop/views/includes/header.php';
 ?>
 
-<div class="container my-5">
+<div class="container my-5" style="height:100vh;">
     <div class="text-center mb-5">
         <h1 class="fw-bold text-primary">Bem-vindo ao Painel do Cliente</h1>
         <p class="lead">Gerencie seus pets e acompanhe os agendamentos de vacinas de forma simples e rápida.</p>

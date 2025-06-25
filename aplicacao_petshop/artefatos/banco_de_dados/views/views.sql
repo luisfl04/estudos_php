@@ -53,3 +53,4 @@ SELECT
 FROM veterinario
 INNER JOIN endereco ON veterinario.endereco_id = endereco.id_endereco;
 
+

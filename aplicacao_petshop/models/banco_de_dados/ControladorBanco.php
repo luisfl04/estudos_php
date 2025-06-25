@@ -14,7 +14,7 @@ class ControladorBanco implements BancoDeDados{
         $this->conexao_banco = new mysqli(
             "127.0.0.1",
             "root",
-            "34512897",
+            "",
             "sistema_vacina"
         );
 

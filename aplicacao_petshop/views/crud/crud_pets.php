@@ -38,7 +38,12 @@
                             <td><?= htmlspecialchars($pet->getRaca()) ?></td>
                             <td><?= htmlspecialchars($pet->getApelido()) ?></td>
                             <td><?= htmlspecialchars($pet->getIdade()) ?></td>
-                            <td><?= htmlspecialchars($pet->getSexo()) ?></td>
+                            <td><?php if(htmlspecialchars($pet->getSexo()) === 'M'){
+                                    echo "Macho";
+                                }else{
+                                    echo "Fêmea";
+                                }
+                            ?></td>
                             <td class="text-center">
                                 <a href="/estudos_php/aplicacao_petshop/views/atualizacao/atualizar_pet.php?id_pet=<?= $pet->getId() ?>" class="btn btn-sm btn-warning me-1">Editar</a>
                                 <a href="/estudos_php/aplicacao_petshop/controllers/PetController.php?remover=<?= $pet->getId() ?>" class="btn btn-sm btn-danger"

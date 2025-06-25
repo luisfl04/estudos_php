@@ -8,7 +8,7 @@ INSERT INTO endereco (
 
 -- Agora, inserindo os veterinários:
 INSERT INTO veterinario (
-    endereco_id, usuario, senha, numero_crmv, nome, telefone, cpf, data_nascimento, sexo
+    endereco_id, username, senha, numero_crmv, nome, telefone, cpf, data_nascimento, sexo
 ) VALUES
     ('1', 'anasilva321', 'ana321', 'CRMV1', 'Ana Silva', '11987654321', '12345678901', '1990-05-15', 'F'),
     ('2', 'brunosantos432', 'bruna432', 'CRMV2', 'Bruna Santos', '21998765432', '98765432109', '1988-08-22', 'F'),
