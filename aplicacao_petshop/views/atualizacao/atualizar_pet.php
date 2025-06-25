@@ -33,7 +33,7 @@
 
 <?php include '../includes/header.php'; ?>
 
-<div class="container mt-5">
+<div class="container mt-5" style="height: 100vh;">
     <h3 class="text-center mb-4">Atualizar Pet</h3>
 
     <form action="../../controllers/PetController.php" method="POST">
@@ -75,7 +75,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Atualizar</button>
-        <a href="estudos_php/aplicacao_petshop/views/crud/crud_pets.php" class="btn btn-secondary">Cancelar</a>
+        <a href="/estudos_php/aplicacao_petshop/views/crud/crud_pets.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 

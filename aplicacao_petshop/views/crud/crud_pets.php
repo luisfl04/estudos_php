@@ -9,11 +9,11 @@
     $pets = $petModel->listarPetsUsuario($username);
 ?>
 
-<div class="container my-5">
+<div class="container my-5" style="height: 100vh;">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold text-primary">Gerenciamento de Pets</h2>
-        <a href="../cadastro/cadastrar_pet.php" class="btn btn-success">+ Cadastrar Novo Pet</a>
+        <a href="../cadastro/cadastrar_pet.php" class="btn btn-sm btn-success">+ Cadastrar Novo Pet</a>
     </div>
 
     <div class="table-responsive">

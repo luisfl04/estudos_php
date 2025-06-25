@@ -60,7 +60,7 @@ class ControladorBanco implements BancoDeDados{
         while($valor = $valores_banco->fetch_array(MYSQLI_ASSOC)){
             $valores[] = $valor;
         }
-        return $valores;
+        return $valores ?? null;
     }
 
     public function cadastrarDados($comando_sql){

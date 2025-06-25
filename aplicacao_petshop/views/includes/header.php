@@ -18,7 +18,7 @@ $nome_usuario = $_SESSION['nome'] ?? 'Usuário';
 </head>
 <body>
 <header class="header-custom py-2 bg-primary text-white">
-  <div class="container">
+    <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap">
 
             <div class="d-flex align-items-center mb-2 mb-md-0">

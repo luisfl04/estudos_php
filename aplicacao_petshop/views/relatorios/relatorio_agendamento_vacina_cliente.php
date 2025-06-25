@@ -15,6 +15,11 @@ $agendamento = new AgendamentoVacina(0, 0, 0, '', $id_usuario);
 $controller = new AgendamentoVacinaController($agendamento);
 $agendamentos = $controller->consultarAgendamentoVacinaUsuarioBanco();
 
+if(empty($agendamentos)){
+    echo "Não há agendamentos";
+    exit;
+}
+
 // Geração do PDF
 $pdf = new FPDF();
 $pdf->AddPage();

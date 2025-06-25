@@ -9,7 +9,6 @@ $id_veterinario = $_SESSION['id_veterinario'];
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/AgendamentoVacina.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/header.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/debug_erro.php';
 ;
 $agendamento = new AgendamentoVacina(0, 0, 0, "", 0);
 $controller_vacina = new AgendamentoVacinaController($agendamento);
@@ -21,6 +20,7 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold">Agendamentos de Vacinas</h2>
         <div>
+            <a href="/estudos_php/aplicacao_petshop/views/dashboards/dashboard_veterinario.php"  class="btn btn-secondary">Voltar</a>
             <a href="/estudos_php/aplicacao_petshop/views/relatorios/relatorio_agendamento_vacina_veterinario.php" target="_blank" class="btn btn-primary">Gerar Relatório PDF</a>
         </div>
     </div>
