@@ -102,4 +102,3 @@ CREATE TABLE agendamento_vacina (
     FOREIGN KEY (vacina_id) REFERENCES vacina(id_vacina)
 );
 
-SELECT * FROM veterinario;
