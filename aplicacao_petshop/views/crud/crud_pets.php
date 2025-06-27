@@ -34,7 +34,7 @@
                     <?php foreach ($pets as $pet): ?>
                         <tr>
                             <td><?= $pet->getId() ?></td>
-                            <td><?= htmlspecialchars($pet->getTipoPet()) ?></td>
+                            <td><?= htmlspecialchars($pet->getNomeTipoPet($pet->getTipoPet()))?></td>
                             <td><?= htmlspecialchars($pet->getRaca()) ?></td>
                             <td><?= htmlspecialchars($pet->getApelido()) ?></td>
                             <td><?= htmlspecialchars($pet->getIdade()) ?></td>

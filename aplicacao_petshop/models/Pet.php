@@ -18,7 +18,7 @@ class Pet {
     private $pet_collection;
 
     // Construtor
-    public function __construct(string $tipo_pet, string $raca, string $apelido, int $idade, string $sexo) {
+    public function __construct(string $tipo_pet = " ", string $raca = " ", string $apelido = " ", int $idade=0, string $sexo = " ") {
         $this->id_pet = 0;
         $this->tipo_pet = $tipo_pet;
         $this->raca = $raca;
@@ -38,6 +38,26 @@ class Pet {
         return $this->tipo_pet;
     }
 
+    public function getNomeTipoPet($id_pet): string {
+        if($id_pet === "1"){
+            return "cachorro";
+        }
+        else if($id_pet === "2"){
+            return "gato";
+        }
+        else if($id_pet === "3"){
+            return "cavalo";
+        }
+        else if($id_pet === "4"){
+            return "pássaro";
+        }
+        else if($id_pet === "5"){
+            return "gado";
+        }
+
+        return "Indefinido";
+    }
+    
     public function getRaca(): string {
         return $this->raca;
     }

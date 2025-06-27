@@ -1,8 +1,10 @@
 <?php
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/Pet.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/PetController.php';
-
 
     $id_pet = $_GET['id_pet'] ?? null;
     if (!$id_pet) {
@@ -10,7 +12,7 @@
         exit;
     }
 
-    $pet = new Pet("", "", "", 0, "");
+    $pet = new Pet();
     $dados_pet = $pet->buscarPorId($id_pet);
 
     if($dados_pet['tipo_pet_id'] === 1){
@@ -27,7 +29,7 @@
     }
     else{
         $tipo_pet = "gado";
-}
+    }
 
 ?>
 
@@ -79,4 +81,4 @@
     </form>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'estudos_php/aplicacao_petshop/views/includes/footer.php'; ?>
