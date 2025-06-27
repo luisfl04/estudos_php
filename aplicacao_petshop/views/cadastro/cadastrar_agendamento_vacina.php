@@ -20,7 +20,7 @@ $veterinarios = $veterinarioModel->consultarVeterinarioBanco();
 
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/header.php'; ?>
 
-<div class="container mt-5">
+<div class="container mt-5" style="height:100vh;">
     <h2 class="text-center mb-4">Agendar Vacina</h2>
 
     <form action="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php" method="POST">

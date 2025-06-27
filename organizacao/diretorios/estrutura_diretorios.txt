@@ -3,8 +3,6 @@
 ```
 APLICACAO_PETSHOP/
 │
-├── artefatos/
-│
 ├── controllers/
 │   ├── logout/
 │   │   └── logout.php
@@ -44,7 +42,7 @@ APLICACAO_PETSHOP/
 │   │   └── logo_vacina.png
 │
 ├── vendor/
-│
+|
 ├── views/
 │   ├── atualizacao/
 │   │   └── atualizar_pet.php

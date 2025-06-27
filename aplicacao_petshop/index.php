@@ -1,10 +1,11 @@
 <?php
     if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+        session_start();
     }
     $mensagem = $_SESSION['mensagem_cadastro'] ?? '';
     unset($_SESSION['mensagem_cadastro']);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,6 +17,7 @@
         include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/cdn.php';
     ?>
 </head>
+
 <body>
 
     <h1 class="text-center mt-5">Sistema de Vacinas</h1>
@@ -28,7 +30,7 @@
 
             <?php if (!empty($mensagem)): ?>
                 <div class="alert alert-info">
-                <?= htmlspecialchars($mensagem) ?>
+                    <?= htmlspecialchars($mensagem) ?>
                 </div>
             <?php endif; ?>
 
@@ -65,4 +67,5 @@
     </div>
 
 </body>
+
 </html>
