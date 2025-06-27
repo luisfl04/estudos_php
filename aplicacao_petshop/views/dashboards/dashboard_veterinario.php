@@ -13,12 +13,12 @@
             <div class="card h-100 shadow-sm border-primary">
                 <div class="card-body text-center">
                     <h5 class="card-title">Agendamentos de Vacinas</h5>
-                    <p class="card-text">Visualize, realize, edite e gerencie todos os seus agendamentos.</p>
+                    <p class="card-text">Visualize, realize, exclua e gere relatórios de todos os seus agendamentos.</p>
                     <a href="/estudos_php/aplicacao_petshop/views/crud/crud_agendamentos_vacina_veterinario.php" class="btn btn-primary">Acessar</a>
                 </div>
             </div>
         </div>
-</div>
+    </div>
 
 <?php 
     include_once $_SERVER['DOCUMENT_ROOT']  . '/estudos_php/aplicacao_petshop/views/includes/footer.php';

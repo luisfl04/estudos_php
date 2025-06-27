@@ -3,16 +3,17 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 $id_veterinario = $_SESSION['id_veterinario'];
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/models/AgendamentoVacina.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/estudos_php/aplicacao_petshop/views/includes/header.php';
-;
+
+
 $agendamento = new AgendamentoVacina(0, 0, 0, "", 0);
 $controller_vacina = new AgendamentoVacinaController($agendamento);
 $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($id_veterinario); 
+
 ?>
 
 <div class="container my-5" style="height:80vh;">
@@ -26,8 +27,10 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
     </div>
 
     <?php if (!empty($agendamentos)): ?>
+        
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle text-center">
+                
                 <thead class="table-dark">
                     <tr>
                         <th>Pet</th>
@@ -37,7 +40,9 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
                         <th>Ações</th>
                     </tr>
                 </thead>
+                
                 <tbody>
+                    
                     <?php foreach ($agendamentos as $agendamento): ?>
                         <tr>
                             <td><?= $agendamento->obterNomePet() ?? 'N/A' ?></td>
@@ -51,7 +56,7 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
                                         href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">
                                         Excluir Vacina
                                     </a>
-                                    <?php else: ?>
+                                <?php else: ?>
                                     <a href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?realizar=<?=$agendamento->getId() ?>" class="btn btn-success btn-sm me-1">Realizar Vacina</a>
                                     <a onclick="return confirm('Tem certeza que deseja exluir esta vacina?')"
                                         href="/estudos_php/aplicacao_petshop/controllers/AgendamentoVacinaController.php?excluir=<?=$agendamento->getId() ?>" class="btn btn-danger btn-sm">
@@ -59,11 +64,17 @@ $agendamentos = $controller_vacina->consultarAgendamentoVacinaBancoVeterinario($
                                     </a>
                                 <?php endif ?>
                             </td>
+                        
                         </tr>
+                    
                     <?php endforeach; ?>
+                    
                 </tbody>
+            
             </table>
+        
         </div>
+    
     <?php else: ?>
         <div class="alert alert-info text-center" role="alert">
             Nenhum agendamento de vacina encontrado.

@@ -15,16 +15,19 @@ class LoginController {
             $usuario = new Usuario($username, $senha, "", "", "", "", "");
             $controller = new UsuarioController($usuario);
             $controller->loginUsuario($username, $senha);
-        } else if ($tipo_usuario === 'veterinario') {
+        } 
+        else if ($tipo_usuario === 'veterinario') {
             $veterinario = new Veterinario($username, $senha, 0," " , " ", " ", " ", " ");
             $controller = new VeterinarioController($veterinario);
             $controller->loginVeterinario($username, $senha);
-        } else {
+        } 
+        else {
             $_SESSION['mensagem_cadastro'] = "Tipo de usuário inválido!";
             header("Location: /estudos_php/aplicacao_petshop/index.php");
             exit;
         }
     }
+
 }
 
 ?>
